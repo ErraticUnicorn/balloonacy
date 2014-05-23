@@ -117,7 +117,7 @@ MonoBehaviour:
   totalBalloons: 0
   timer: 0
   spawntime: 25
-  distance: 10
+  distance: 14
   threshold1: 150
 --- !u!1001 &111460792
 Prefab:
@@ -272,9 +272,9 @@ Transform:
   m_Children:
   - {fileID: 1520022689}
   - {fileID: 1051853270}
-  - {fileID: 747881493}
-  - {fileID: 703951135}
   - {fileID: 2047541545}
+  - {fileID: 703951135}
+  - {fileID: 747881493}
   - {fileID: 1012478209}
   - {fileID: 93164211}
   m_Father: {fileID: 543741058}
@@ -783,6 +783,7 @@ GameObject:
   - 61: {fileID: 1051853272}
   - 50: {fileID: 1051853271}
   - 114: {fileID: 1051853275}
+  - 114: {fileID: 1051853274}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -853,6 +854,19 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: ac4df2db6f020074fb4bdf1b4807c03a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1051853274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1051853269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c958d12845be442a4a67d26038490d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  purpleballoon: {fileID: 400000, guid: ed8beb4ed8dbbd544a47a3e243fe0efe, type: 2}
+  purpcount: 1
 --- !u!114 &1051853275
 MonoBehaviour:
   m_ObjectHideFlags: 0

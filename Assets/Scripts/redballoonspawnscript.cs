@@ -23,14 +23,14 @@ public class redballoonspawnscript : MonoBehaviour {
     //Array with the coordinates of next five balloons
     private List<Vector2> BalloonCoord;
 
-    //player
-    private GameObject player;
+    //camera
+    private GameObject camera;
 
     //allows manipulation of difficulty via score
     private scoretext scorer;
 
-    //distance from player spawner is set at
-    public int distance = 10;
+    //distance from camera spawner is set at
+    public int distance = 14;
 
  
     //first trigger to increase difficulty
@@ -38,11 +38,11 @@ public class redballoonspawnscript : MonoBehaviour {
 
 
 
-	// Use this for initialization, inits player, score, timer, and total balloons
+	// Use this for initialization, inits camera, score, timer, and total balloons
 	void Start () {
         totalBalloons = 0;
         timer = 0;
-        player = GameObject.Find("player");
+        camera = GameObject.Find("Main Camera");
         scorer = GameObject.Find("Score").GetComponent<scoretext>();
             
 	}
@@ -51,8 +51,8 @@ public class redballoonspawnscript : MonoBehaviour {
 	void Update () {
 
         SpawnBalloons();
-        //keeps spawner near player (rubber banded?)
-        transform.position = (transform.position - player.transform.position).normalized * distance + player.transform.position;
+        //keeps spawner near camera (rubber banded?)
+        transform.position = (transform.position - camera.transform.position).normalized * distance + camera.transform.position;
 	}
 
     /// <summary>

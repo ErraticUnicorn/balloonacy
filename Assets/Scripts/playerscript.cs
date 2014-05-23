@@ -20,9 +20,6 @@ public class playerscript : MonoBehaviour {
 
     private GameObject CameraCheck;
 
- 
-
-
 	// Use this for initialization
 	void Start () {
         CameraCheck = GameObject.Find("Main Camera");
