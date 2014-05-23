@@ -117,7 +117,7 @@ MonoBehaviour:
   totalBalloons: 0
   timer: 0
   spawntime: 25
-  distance: 14
+  distance: 13
   threshold1: 150
 --- !u!1001 &111460792
 Prefab:

@@ -30,7 +30,7 @@ public class redballoonspawnscript : MonoBehaviour {
     private scoretext scorer;
 
     //distance from camera spawner is set at
-    public int distance = 14;
+    public int distance = 13;
 
  
     //first trigger to increase difficulty
