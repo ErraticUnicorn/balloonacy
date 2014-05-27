@@ -432,7 +432,6 @@ MonoBehaviour:
   speed: {x: 0, y: 2}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  deflaterate: .00200000009
   accel: 3
   floatingconst: 4
 --- !u!58 &703951132
@@ -494,7 +493,7 @@ Transform:
   m_PrefabInternal: {fileID: 728696904}
   m_GameObject: {fileID: 703951130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.74615812, y: -4.90577316, z: 10}
+  m_LocalPosition: {x: -7.74615765, y: -4.97410727, z: 10}
   m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1}
   m_Children: []
   m_Father: {fileID: 475918087}
@@ -507,11 +506,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.74615812
+      value: -7.74615765
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.90577316
+      value: -4.97410727
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -576,7 +575,6 @@ MonoBehaviour:
   speed: {x: 0, y: 2}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  deflaterate: .00200000009
   accel: 3
   floatingconst: 4
 --- !u!58 &747881490
@@ -788,7 +786,6 @@ MonoBehaviour:
   speed: {x: 0, y: 1}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  deflaterate: .00200000009
   accel: 3
   floatingconst: 4
 --- !u!1 &1051853269
@@ -1447,7 +1444,6 @@ MonoBehaviour:
   speed: {x: 0, y: 2}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  deflaterate: .00200000009
   accel: 3
   floatingconst: 4
 --- !u!58 &2047541542

@@ -6,7 +6,7 @@ public class redballoonscript : MonoBehaviour {
 	public Vector2 speed = new Vector2(0, 2);
 	public Vector2 direction = new Vector2(0, 1);
 	public Vector2 movement;
-	private float deflaterate = .0f;
+	private float deflaterate = .0005f;
     public float accel = 3;
 	public int floatingconst = 4;
 

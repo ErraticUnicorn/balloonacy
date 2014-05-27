@@ -12,7 +12,7 @@ public class greenballoon : MonoBehaviour
 
 
     //deflationrate
-    public float deflaterate = .008f;
+    public float deflaterate = .002f;
     public float accel = 8;
 
     public int floatingconst = 4;
