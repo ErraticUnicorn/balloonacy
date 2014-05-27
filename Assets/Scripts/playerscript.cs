@@ -104,7 +104,32 @@ public class playerscript : MonoBehaviour {
                 Jump();
             }
 
+            //ray for the purpose of converting a touch on screen to points in the game world
+            var coordRay = Camera.main.ScreenPointToRay(touch.position);
+            if (coordRay.origin.x < transform.position.x && !isGrounded)
+            {
+                XAxisMvmtLeft();
+
+            }
+
+            if (coordRay.origin.x > transform.position.x && !isGrounded)
+            {
+                XAxisMvmtRight();
+            }
         }
+
+        Vector3 dir = Vector3.zero;
+
+        dir.x = -Input.acceleration.y;
+        dir.y = Input.acceleration.x;
+
+        if (dir.sqrMagnitude > 1)
+        {
+            dir.Normalize();
+        }
+
+        dir *= Time.deltaTime;
+        transform.position += dir * movementSpeed;
     }
 
     void Jump()
