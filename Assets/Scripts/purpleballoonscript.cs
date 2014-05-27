@@ -11,7 +11,7 @@ public class purpleballoonscript : MonoBehaviour {
 
 
     //deflationrate
-    public float deflaterate = .0007f;
+    public float deflaterate = .003f;
     public float accel = 1.5f;
 
     public int floatingconst = 4;

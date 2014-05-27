@@ -25,17 +25,41 @@ public class playerscript : MonoBehaviour {
         CameraCheck = GameObject.Find("Main Camera");
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame 
 	void Update () {
+        //section deals with input
+        //Keyboard input helper function
+        KeyboardControls();
+
+        //MouseControls
+        //MouseControls();
+
+        //iOS
+        iOSControls();
+
+        //Bounday Checks
+        CheckBounds();
+      
+        //checks if lost
+        Lose();
+	}
+
+    void FixedUpdate()
+    {
+        
+    }
+    //handles keyboard input
+    void KeyboardControls()
+    {
         //allows left and right movement only when jumping
         if (Input.GetKey("left") && !isGrounded)
         {
-            transform.position -= Vector3.right * movementSpeed * Time.deltaTime;
+            XAxisMvmtLeft();
         }
 
         if (Input.GetKey("right") && !isGrounded)
         {
-            transform.position += Vector3.right * movementSpeed * Time.deltaTime;
+            XAxisMvmtRight();
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -43,6 +67,70 @@ public class playerscript : MonoBehaviour {
             Jump();
         }
 
+    }
+
+    void MouseControls()
+    {
+        if (Input.GetMouseButtonDown(0))//&& !isGrounded)
+        {
+            Jump();
+        }
+
+        if (Input.GetAxis("Mouse X") <= -1)
+        {
+            XAxisMvmtLeft();
+        }
+
+        //ray for the purpose of converting a click on screen to points in the game world
+        var coordRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (coordRay.origin.x < transform.position.x && !isGrounded)
+        {
+            XAxisMvmtLeft();
+
+        }
+
+        if (coordRay.origin.x > transform.position.x && !isGrounded)
+        {
+            XAxisMvmtRight();
+        }
+    }
+
+    void iOSControls()
+    {
+        foreach (Touch touch in Input.touches){
+            if (touch.phase == TouchPhase.Began)
+            {
+                Jump();
+            }
+
+        }
+    }
+
+    void Jump()
+    {
+        if (!isGrounded)
+        {
+            return;
+        }
+        isGrounded = false;
+        rigidbody2D.AddForce(new Vector2(0, jumpHeight));
+
+    }
+
+    void XAxisMvmtRight()
+    {
+        transform.position += Vector3.right * movementSpeed * Time.deltaTime;
+
+    }
+    void XAxisMvmtLeft()
+    {
+        transform.position -= Vector3.right * movementSpeed * Time.deltaTime;
+    }
+
+
+    void CheckBounds()
+    {
         //make sure the player doesn't leave the upper y, and two x values
         var dist = (transform.position - Camera.main.transform.position).z;
 
@@ -55,10 +143,14 @@ public class playerscript : MonoBehaviour {
 
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, leftBorder, rightBorder),
-            Mathf.Clamp(transform.position.y, transform.position.y, topBorder ),
+            Mathf.Clamp(transform.position.y, transform.position.y, topBorder),
             transform.position.z
 
             );
+    }
+    //lose state
+    void Lose()
+    {
         //lose state
         if (checkIfOutOfBounds())
         {
@@ -69,22 +161,6 @@ public class playerscript : MonoBehaviour {
         {
             Application.LoadLevel("losescreen");
         }
-
-	}
-
-    void FixedUpdate()
-    {
-        
-    }
-
-    void Jump()
-    {
-        if (!isGrounded)
-        {
-            return;
-        }
-        isGrounded = false;
-        rigidbody2D.AddForce(new Vector2(0, jumpHeight));
 
     }
 
