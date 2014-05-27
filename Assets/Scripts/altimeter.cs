@@ -5,20 +5,24 @@ using System.Collections;
 public class altimeter : MonoBehaviour {
     
     private GameObject Player;
-    public int Score;
+    scoremanager scorer;
+    public int height;
 
 	// Use this for initialization
 	void Start () {
         Player = GameObject.Find("player");
+        scorer = GameObject.Find("Scorer").GetComponent<scoremanager>();
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Score = (int)(Player.transform.position.y - this.transform.position.y) + 100;
+        height = (int)(Player.transform.position.y - this.transform.position.y) + 100;
+        scorer.setScore(height);
 	}
 
-    public int getScore()
+    public int getHeight()
     {
-        return Score;
+        return height;
     }
 }

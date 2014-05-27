@@ -158,6 +158,14 @@ Prefab:
       propertyPath: m_TagString
       value: redplatform
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.20000005
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
   m_RootGameObject: {fileID: 2047541540}
@@ -190,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0725f3e9fc5c34e97ff3dc9460a994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 0
+  height: 0
 --- !u!4 &185928226
 Transform:
   m_ObjectHideFlags: 0
@@ -358,6 +366,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 638247145}
+  - 114: {fileID: 638247146}
   m_Layer: 0
   m_Name: Scorer
   m_TagString: Untagged
@@ -378,6 +387,17 @@ Transform:
   - {fileID: 185928226}
   - {fileID: 1627928388}
   m_Father: {fileID: 0}
+--- !u!114 &638247146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638247144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3598cabc98ac1424fa766d0cd441fe91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &703951130
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +495,7 @@ Transform:
   m_GameObject: {fileID: 703951130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.74615812, y: -4.90577316, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1}
   m_Children: []
   m_Father: {fileID: 475918087}
 --- !u!1001 &728696904
@@ -619,7 +639,7 @@ Transform:
   m_GameObject: {fileID: 747881488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.74067974, y: -11.2770576, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1}
   m_Children: []
   m_Father: {fileID: 475918087}
 --- !u!1 &798042382
@@ -699,7 +719,7 @@ Transform:
   m_GameObject: {fileID: 1012478208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.03277683, y: -6.62945938, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1}
   m_Children: []
   m_Father: {fileID: 475918087}
 --- !u!50 &1012478210
@@ -1043,7 +1063,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.20000005
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
       propertyPath: m_Name
@@ -1228,7 +1248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83121f061d01fc42855c1971f03a07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
 --- !u!132 &1627928390
 GUIText:
   m_ObjectHideFlags: 0
@@ -1245,7 +1264,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Material: {fileID: 0}
-  m_FontSize: 0
+  m_FontSize: 25
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
@@ -1487,6 +1506,6 @@ Transform:
   m_GameObject: {fileID: 2047541540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.159858704, y: -9.03365707, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1}
   m_Children: []
   m_Father: {fileID: 475918087}

@@ -12,6 +12,7 @@ public class playerscript : MonoBehaviour {
 
 	void Start () {
         CameraCheck = GameObject.Find("Main Camera");
+        DontDestroyOnLoad(this);
 	}
 	
 	void Update () {
