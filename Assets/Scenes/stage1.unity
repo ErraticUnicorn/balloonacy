@@ -1299,6 +1299,10 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5000000, guid: 9bb53139951f9584ca233480788ef759, type: 2}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9bb53139951f9584ca233480788ef759, type: 2}
   m_RootGameObject: {fileID: 1051853269}
