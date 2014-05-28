@@ -69,6 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {x: 0, y: 0}
   movementSpeed: 5
+  startpos: {x: 0, y: 0, z: 0}
+  newdeflaterate: .00600000005
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

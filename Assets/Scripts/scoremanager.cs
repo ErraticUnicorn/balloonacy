@@ -31,4 +31,9 @@ public class scoremanager : MonoBehaviour {
         this.score = score;
         return score;
     }
+
+    public void newScoreRate(int score)
+    {
+        this.score += score;
+    }
 }

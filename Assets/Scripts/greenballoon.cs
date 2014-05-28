@@ -3,23 +3,16 @@ using System.Collections;
 
 public class greenballoon : MonoBehaviour
 {
-    //speed and movement direction
     public Vector2 speed = new Vector2(0, 4);
-
     public Vector2 direction = new Vector2(0, 1);
-
     public Vector2 movement;
-
-
-    //deflationrate
     public float deflaterate = .002f;
     public float accel = 8;
-
     public int floatingconst = 4;
+
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame

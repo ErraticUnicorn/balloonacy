@@ -12,7 +12,7 @@ public class purpleballoonscript : MonoBehaviour {
 
     //deflationrate
     public float deflaterate = .003f;
-    public float accel = 1.5f;
+    public float accel = 2f;
 
     public int floatingconst = 4;
 
@@ -20,11 +20,14 @@ public class purpleballoonscript : MonoBehaviour {
 
     //camera
     private GameObject camera;
+    private GameObject player;
 
 	// Use this for initialization
 	void Start () {
         camera = GameObject.Find("Main Camera");
+        player = GameObject.Find("player");
         Vector3 curCamPos = camera.transform.position;
+        curCamPos.x = player.transform.position.x;
         curCamPos.y -= spawnconst;
         curCamPos.z = 10;
         this.transform.position = curCamPos;

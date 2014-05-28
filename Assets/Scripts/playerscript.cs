@@ -5,13 +5,17 @@ public class playerscript : MonoBehaviour {
 	public Vector2 movement;
     public float movementSpeed = 5;
 	public Vector3 startpos = new Vector3(0, 0, 0);
+    public float newdeflaterate = .006f;
 	private int jumpHeight = 500;
     private bool isGrounded = false;
 	private bool losing = false;
 	private GameObject CameraCheck;
+    private scoremanager scorer;
+
 
 	void Start () {
         CameraCheck = GameObject.Find("Main Camera");
+        scorer = GameObject.Find("Scorer").GetComponent<scoremanager>();
         DontDestroyOnLoad(this);
 	}
 	
@@ -140,7 +144,13 @@ public class playerscript : MonoBehaviour {
         //increase deflaterate of balloon once player steps on it
         if (info.gameObject.tag == "redplatform") {
             var curballoon = info.gameObject.GetComponent<redballoonscript>();
-            curballoon.setDeflateRate(.006f);
+            curballoon.setDeflateRate(newdeflaterate);
+        }
+
+        if (info.gameObject.tag == "greenplatform") {
+            var curballoon = info.gameObject.GetComponent<greenballoon>();
+            curballoon.setDeflateRate(newdeflaterate);
+            scorer.newScoreRate(10);
         }
     }
 
