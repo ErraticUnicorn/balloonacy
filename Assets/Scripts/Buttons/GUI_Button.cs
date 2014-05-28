@@ -8,29 +8,27 @@ public class GUI_Button : MonoBehaviour {
     public int purpcount = 1;
 
     private GameObject Player;
+    private scoremanager scorer;
 
     void Start() {
         Player = GameObject.Find("player");
+        scorer = GameObject.Find("Scorer").GetComponent<scoremanager>();
     }
     //GUI specific actions
-    void OnGUI()
-    {
+    void OnGUI() {
 
-        if (GUI.Button(new Rect(0, 0, 100, 50), "Safety Balloon!")) //for adding a texture just replace the string witht he image
+        if (GUI.Button(new Rect(0, 0, 100, 50), "Safety Balloon Count: " + purpcount)) //for adding a texture just replace the string witht he image
         {
             spawnPurpleBalloon();
         }
     }
 
-    public void setPurpcount(int count)
-    {
+    public void setPurpcount(int count) {
         purpcount = count;
     }
 
-    void spawnPurpleBalloon()
-    {
-        if (purpcount > 0)
-        {
+    void spawnPurpleBalloon() {
+        if (purpcount > 0) {
             Transform balloon;
             balloon = Instantiate(purpleballoon) as Transform;
             Vector3 pos = balloon.transform.position;
@@ -38,6 +36,12 @@ public class GUI_Button : MonoBehaviour {
             balloon.position = pos;
             balloon.transform.parent = transform.parent;
             purpcount--;
+        }
+    }
+
+    void controlPurpCount() {
+        if (scorer.getScore() % 500 == 0) {
+            purpcount++;
         }
     }
 }

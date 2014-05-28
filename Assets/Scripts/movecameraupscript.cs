@@ -38,7 +38,6 @@ public class movecameraupscript : MonoBehaviour {
         }
 
         Vector3 screenPos = camera.WorldToScreenPoint(Player.transform.position);
-        print("target is " + screenPos.y + " pixels from the bottom");
         if (screenPos.y >= 915) {
             check = true;
         }
