@@ -73,6 +73,7 @@ MonoBehaviour:
   deflaterate: .00100000005
   accel: 8
   floatingconst: 4
+  image: {fileID: 2800000, guid: 3dc5d34db0abd2d4a8f9158d3f17c9a1, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
