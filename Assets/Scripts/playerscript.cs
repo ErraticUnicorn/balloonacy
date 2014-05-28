@@ -2,10 +2,11 @@
 using System.Collections;
 
 public class playerscript : MonoBehaviour {
+
 	public Vector2 movement;
     public float movementSpeed = 5;
 	public Vector3 startpos = new Vector3(0, 0, 0);
-    public float newdeflaterate = .006f;
+	public float newdeflaterate = .006f;
 	private int jumpHeight = 500;
     private bool isGrounded = false;
 	private bool losing = false;
@@ -20,41 +21,60 @@ public class playerscript : MonoBehaviour {
 	}
 	
 	void Update () {
-       	this.keyboardControls();
-		this.iOSControls();
-        this.checkBounds();
-        this.checkForDidLose();
+		this.keyboardControls();
+		//this.iOSControls();
+		//this.mouseControls();
+		this.checkBounds();
+		this.checkForDidLose();
 	}
 
-    void FixedUpdate() {}
-    
-	void keyboardControls(){
-        if (Input.GetKey("left") && !isGrounded){
-            xAxisMvmtLeft();
-        }
+	void FixedUpdate() {
+		RaycastHit2D[] hits;
+		Vector3 vect = transform.position;
 
-        if (Input.GetKey("right") && !isGrounded){
-            xAxisMvmtRight();
-        }
+		//9.61f exists
+		//9.604 exists
+		//9.602f exists
+//		//9.6014 exits
+		//9.6013 exits
+		//9.6012 exits
+		//9.60114 exists
 
-        if (Input.GetButtonDown("Jump") && isGrounded){
+		//9.6011 Not exists
+		//9.601 Not exists
+		//9.60f Not exists
+
+		vect.y = vect.y - 0.44f;
+
+		hits = Physics2D.RaycastAll(vect, Vector2.zero);
+		int i = 0;
+
+		bool temp = false;
+		while (i < hits.Length) {
+			RaycastHit2D hit = hits[i];
+			if (hit.collider != null) {
+				if(hit.collider.tag == "redplatform"){
+					var curballoon = hit.collider.gameObject.GetComponent<redballoonscript>();
+				    curballoon.setDeflateRate(newdeflaterate);
+					temp = true;
+				}
+			}  
+			i++;
+		}
+		isGrounded = temp;
+	}
+
+	void mouseControls() {
+		var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Input.GetMouseButtonDown(0) && isGrounded) {
             playerJump();
         }
 
-    }
+		if (Input.GetAxis("Mouse X") <= -1) {
+	         xAxisMvmtLeft();
+		}
 
-    void mouseControls() {
-
-        if (Input.GetMouseButtonDown(0)) {
-            playerJump();
-        }
-
-        if (Input.GetAxis("Mouse X") <= -1) {
-            xAxisMvmtLeft();
-        }
-
-        var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
-  		
 		if (screenPoint.origin.x < transform.position.x && !isGrounded) {
             xAxisMvmtLeft();
         }
@@ -73,6 +93,7 @@ public class playerscript : MonoBehaviour {
             }
 
 			var screenPoint = Camera.main.ScreenPointToRay(touch.position);
+
 			if (screenPoint.origin.x < transform.position.x && !isGrounded) {
                 xAxisMvmtLeft();
             }
@@ -87,62 +108,76 @@ public class playerscript : MonoBehaviour {
         dir.x = Input.acceleration.x;
         //dir.y = -Input.acceleration.y;
 
-        if (dir.sqrMagnitude > 1)
-        {
+        if (dir.sqrMagnitude > 1){
             dir.Normalize();
         }
 
         dir *= Time.deltaTime;
         transform.position += dir * movementSpeed;
     }
+	
+	void keyboardControls(){
+		if (Input.GetKey("left")){
+			xAxisMvmtLeft();
+		}
+		
+		if (Input.GetKey("right")){
+			xAxisMvmtRight();
+		}
+		
+		if (Input.GetButtonDown("Jump")){
+			playerJump();
+		}
+		
+	}
 
     void playerJump() {
-        if (!isGrounded) {
-            return;
-        }
-        isGrounded = false;
-        rigidbody2D.AddForce(new Vector2(0, jumpHeight));
+		if (isGrounded) {
+			rigidbody2D.AddForce(new Vector2(0, jumpHeight));
+		}
     }
 
-    void xAxisMvmtRight() {
-        transform.position += Vector3.right * movementSpeed * Time.deltaTime;
-
-    }
-    void xAxisMvmtLeft() {
-        transform.position -= Vector3.right * movementSpeed * Time.deltaTime;
-    }
+	void xAxisMvmtRight() {
+		transform.position += Vector3.right * movementSpeed * Time.deltaTime;
+	}
+	
+	void xAxisMvmtLeft() {
+		transform.position -= Vector3.right * movementSpeed * Time.deltaTime;
+	}
 	
 	void checkBounds() {
-        var dist = (transform.position - Camera.main.transform.position).z;
+		/*
+		var dist = (transform.position - Camera.main.transform.position).z;
 		var leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).x;
 		var rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, dist)).x;
-	    var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 2, dist)).y;
-
-        transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, leftBorder, rightBorder),
-            Mathf.Clamp(transform.position.y, transform.position.y, topBorder),
-            transform.position.z
-
-            );
-    }
-    
+		var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 2, dist)).y;
+		
+		transform.position = new Vector3(
+			Mathf.Clamp(transform.position.x, leftBorder, rightBorder),
+			Mathf.Clamp(transform.position.y, transform.position.y, topBorder),
+			transform.position.z);
+		*/
+	}
+	
+	bool checkIfOutOfBounds() {
+		return (transform.position.y <= CameraCheck.transform.position.y - 10 || transform.position.x >= 10 || transform.position.x <= -10);
+	}
+	
 	void checkForDidLose() {
 		if (checkIfOutOfBounds()){
-            losing = true;
-        }
-
-        if (losing) {
             Application.LoadLevel("losescreen");
         }
 
     }
 
+/*
 	void OnCollisionEnter2D(Collision2D info) {
         if (rigidbody2D.velocity.magnitude <= 3  ) {
             isGrounded = true;
         }
         //increase deflaterate of balloon once player steps on it
-        if (info.gameObject.tag == "redplatform") {
+
+       if (info.gameObject.tag == "redplatform") {
             var curballoon = info.gameObject.GetComponent<redballoonscript>();
             curballoon.setDeflateRate(newdeflaterate);
         }
@@ -153,18 +188,8 @@ public class playerscript : MonoBehaviour {
             scorer.newScoreRate(10);
         }
     }
+*/    
 
-    
-    bool checkIfOutOfBounds() {
-        if (transform.position.y <= CameraCheck.transform.position.y - 10 || transform.position.x >= 10 || transform.position.x <= -10)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }
 
 
