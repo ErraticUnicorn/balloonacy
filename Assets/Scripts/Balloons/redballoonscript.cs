@@ -3,12 +3,14 @@ using System.Collections;
 
 public class redballoonscript : MonoBehaviour {
     
-	public Vector2 speed = new Vector2(0, 2);
+	public Vector2 speed = new Vector2(0, 2.5f);
 	public Vector2 direction = new Vector2(0, 1);
 	public Vector2 movement;
-	private float deflaterate = .0005f;
-    public float accel = 3;
+	private float deflaterate = .001f;
+    public float accel = 4;
 	public int floatingconst = 4;
+    public bool isVisible = false;
+    public bool hasBecomeVisible = false;
 
 	void Start () {}
 	
@@ -18,6 +20,10 @@ public class redballoonscript : MonoBehaviour {
         speed += new Vector2( 0, .01f);
         this.transform.Translate(Vector3.up * accel * Time.deltaTime);
 
+        if (!isVisible && transform.localScale.x < .5 && !hasBecomeVisible)
+        {
+            Destroy(this.gameObject);
+        }
 	}
 
     void FixedUpdate() {
@@ -40,13 +46,24 @@ public class redballoonscript : MonoBehaviour {
 
     }
 
-    public float getDeflateRate(){
+    public float getDeflateRate() {
         return deflaterate;
     }
 
-    public void setDeflateRate(float newrate){
+    public void setDeflateRate(float newrate) {
 
 		deflaterate = newrate;
+    }
 
+    public void OnBecameVisible()
+    {
+        isVisible = true;
+        hasBecomeVisible = true;
+    }
+
+    public void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+        isVisible = false;
     }
 }

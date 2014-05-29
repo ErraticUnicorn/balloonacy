@@ -67,11 +67,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6556db58517be1498d0e47c4a84ea8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 2}
+  speed: {x: 0, y: 2.5}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  accel: 3
+  accel: 4
   floatingconst: 4
+  isVisible: 0
+  hasBecomeVisible: 0
+  timeAlive: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 93164210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.13438177, z: 10}
+  m_LocalPosition: {x: -.0491981693, y: -6.34721088, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 475918087}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6141b608405b97c45ad84d2bff663990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redballoon: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+  redballoon: {fileID: 0}
   greenballoon: {fileID: 400000, guid: 1035ac473c7d36646bba2fddc345e76b, type: 2}
   totalBalloons: 0
   timer: 0
@@ -428,11 +428,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6556db58517be1498d0e47c4a84ea8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 2}
+  speed: {x: 0, y: 2.5}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  accel: 3
+  accel: 4
   floatingconst: 4
+  isVisible: 0
+  hasBecomeVisible: 0
 --- !u!58 &703951132
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -571,11 +573,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6556db58517be1498d0e47c4a84ea8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 2}
+  speed: {x: 0, y: 2.5}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  accel: 3
+  accel: 4
   floatingconst: 4
+  isVisible: 0
+  hasBecomeVisible: 0
 --- !u!58 &747881490
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -787,6 +791,8 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   accel: 3
   floatingconst: 4
+  isVisible: 0
+  hasBecomeVisible: 0
 --- !u!1 &1051853269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,11 +1423,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6556db58517be1498d0e47c4a84ea8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 2}
+  speed: {x: 0, y: 2.5}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  accel: 3
+  accel: 4
   floatingconst: 4
+  isVisible: 0
+  hasBecomeVisible: 0
 --- !u!58 &2047541542
 CircleCollider2D:
   m_ObjectHideFlags: 0

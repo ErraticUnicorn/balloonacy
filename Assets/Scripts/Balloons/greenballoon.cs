@@ -76,4 +76,9 @@ public class greenballoon : MonoBehaviour
             GUI.Button(new Rect(Screen.width / 2, Screen.height / 2, 200, 200), image);
         }
     }
+
+    public void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
 }

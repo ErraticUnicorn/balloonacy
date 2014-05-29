@@ -5,7 +5,7 @@ using System.Collections;
 
 public class movecameraupscript : MonoBehaviour {
 
-    private GameObject Camera;
+    private GameObject Cam;
     private GameObject Player;
 	// Use this for initialization
 
@@ -16,7 +16,7 @@ public class movecameraupscript : MonoBehaviour {
 
     bool check = false;
 	void Start () {
-        Camera = GameObject.Find("Main Camera");
+        Cam = GameObject.Find("Main Camera");
         Player = GameObject.Find("player");
 	}
 	
@@ -27,18 +27,21 @@ public class movecameraupscript : MonoBehaviour {
             float speed = 10;
             var step = speed * Time.deltaTime;
             Vector3 newPos = new Vector3(
-                Camera.transform.position.x,
+                Cam.transform.position.x,
                 Player.transform.position.y,
-                Camera.transform.position.z
+                Cam.transform.position.z
                 );
-            Camera.transform.position = Vector3.MoveTowards(Camera.transform.position, newPos, step);
+            Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, newPos, step);
         }
-        if (Camera.transform.position.y + 3 >= Player.transform.position.y) {
+        if (Cam.transform.position.y + 3 >= Player.transform.position.y) {
             check = false;
         }
 
-        Vector3 screenPos = camera.WorldToScreenPoint(Player.transform.position);
-        if (screenPos.y >= 915) {
+        var dist = (Player.transform.position - Camera.main.transform.position).z;
+        var bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
+        var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, dist)).y;
+        if (Player.transform.position.y >= topBorder - 1)
+        {
             check = true;
         }
 	}

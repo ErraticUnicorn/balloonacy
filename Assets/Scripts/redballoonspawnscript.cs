@@ -36,8 +36,6 @@ public class redballoonspawnscript : MonoBehaviour {
     //first trigger to increase difficulty
     public int threshold1 = 250;
 
-
-
 	// Use this for initialization, inits camera, score, timer, and total balloons
 	void Start () {
         totalBalloons = 0;
