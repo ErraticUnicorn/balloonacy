@@ -13,7 +13,6 @@ public class playerscript : MonoBehaviour {
 	private GameObject CameraCheck;
     private scoremanager scorer;
 
-
 	void Start () {
         CameraCheck = GameObject.Find("Main Camera");
         scorer = GameObject.Find("Scorer").GetComponent<scoremanager>();
@@ -23,7 +22,7 @@ public class playerscript : MonoBehaviour {
 	void Update () {
 		this.keyboardControls();
 		//this.iOSControls();
-		//this.mouseControls();
+		this.mouseControls();
 		this.checkBounds();
 		this.checkForDidLose();
 	}
@@ -31,24 +30,9 @@ public class playerscript : MonoBehaviour {
 	void FixedUpdate() {
 		RaycastHit2D[] hits;
 		Vector3 vect = transform.position;
-
-		//9.61f exists
-		//9.604 exists
-		//9.602f exists
-//		//9.6014 exits
-		//9.6013 exits
-		//9.6012 exits
-		//9.60114 exists
-
-		//9.6011 Not exists
-		//9.601 Not exists
-		//9.60f Not exists
-
-		vect.y = vect.y - 0.44f;
-
+		vect.y = vect.y - 1f;
 		hits = Physics2D.RaycastAll(vect, Vector2.zero);
 		int i = 0;
-
 		bool temp = false;
 		while (i < hits.Length) {
 			RaycastHit2D hit = hits[i];
@@ -56,6 +40,11 @@ public class playerscript : MonoBehaviour {
 				if(hit.collider.tag == "redplatform"){
 					var curballoon = hit.collider.gameObject.GetComponent<redballoonscript>();
 				    curballoon.setDeflateRate(newdeflaterate);
+					temp = true;
+				}
+				if(hit.collider.tag == "greenplatform"){
+					var curballoon = hit.collider.gameObject.GetComponent<greenballoon>();
+					curballoon.setDeflateRate(newdeflaterate);
 					temp = true;
 				}
 			}  
@@ -127,6 +116,10 @@ public class playerscript : MonoBehaviour {
 		
 		if (Input.GetButtonDown("Jump")){
 			playerJump();
+			Debug.Log("*****");
+			SpriteRenderer sr = GetComponent<SpriteRenderer>();
+			Debug.Log( sr.sprite.bounds.center.normalized );
+			Debug.Log("*****");
 		}
 		
 	}

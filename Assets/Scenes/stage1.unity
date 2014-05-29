@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6141b608405b97c45ad84d2bff663990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redballoon: {fileID: 0}
+  redballoon: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
   greenballoon: {fileID: 400000, guid: 1035ac473c7d36646bba2fddc345e76b, type: 2}
   totalBalloons: 0
   timer: 0
@@ -279,9 +279,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1051853270}
-  - {fileID: 2047541545}
-  - {fileID: 703951135}
   - {fileID: 747881493}
+  - {fileID: 703951135}
+  - {fileID: 2047541545}
   - {fileID: 1012478209}
   - {fileID: 93164211}
   m_Father: {fileID: 543741058}
@@ -445,7 +445,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .5
+  m_Radius: .300000012
   m_Center: {x: 0, y: 0}
 --- !u!50 &703951133
 Rigidbody2D:
@@ -590,7 +590,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .5
+  m_Radius: .300000012
   m_Center: {x: 0, y: 0}
 --- !u!50 &747881491
 Rigidbody2D:
@@ -773,7 +773,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .5
+  m_Radius: .300000012
   m_Center: {x: 0, y: 0}
 --- !u!114 &1012478213
 MonoBehaviour:
@@ -850,7 +850,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .469999999, y: .469999999}
+  m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!212 &1051853273
 SpriteRenderer:
@@ -1440,7 +1440,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .5
+  m_Radius: .300000012
   m_Center: {x: 0, y: 0}
 --- !u!50 &2047541543
 Rigidbody2D:
