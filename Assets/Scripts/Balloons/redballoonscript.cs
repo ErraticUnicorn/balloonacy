@@ -6,13 +6,18 @@ public class redballoonscript : MonoBehaviour {
 	public Vector2 speed = new Vector2(0, 2.5f);
 	public Vector2 direction = new Vector2(0, 1);
 	public Vector2 movement;
-	private float deflaterate = .001f;
-    public float accel = 4;
+	public float deflaterate = .001f;
+    public float accel = 4.5f;
 	public int floatingconst = 4;
     public bool isVisible = false;
     public bool hasBecomeVisible = false;
 
-	void Start () {}
+    private Vector3 originalScale;
+
+    void Start()
+    {
+        originalScale = this.transform.localScale;
+    }
 	
 	void Update () {
         movement = new Vector2( speed.x * direction.x, speed.y * direction.y / floatingconst);
@@ -22,7 +27,7 @@ public class redballoonscript : MonoBehaviour {
 
         if (!isVisible && transform.localScale.x < .5 && !hasBecomeVisible)
         {
-            Destroy(this.gameObject);
+            Invoke("Destroy", 1f);
         }
 	}
 
@@ -41,7 +46,7 @@ public class redballoonscript : MonoBehaviour {
             Vector3 reduce = new Vector3(deflaterate, deflaterate, 0);
             transform.localScale -= reduce;
         } else {
-            Destroy(gameObject);
+            Invoke("Destroy", 1f);
         }
 
     }
@@ -63,7 +68,22 @@ public class redballoonscript : MonoBehaviour {
 
     public void OnBecameInvisible()
     {
-        Destroy(this.gameObject);
+        Invoke("Destroy", 0f);
         isVisible = false;
+    }
+
+    public void resetScale(){
+        this.transform.localScale = originalScale;
+    }
+
+    void Destroy()
+    {
+        this.gameObject.SetActive(false);
+        resetScale();
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke();
     }
 }
