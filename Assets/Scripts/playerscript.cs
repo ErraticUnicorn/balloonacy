@@ -10,12 +10,10 @@ public class playerscript : MonoBehaviour {
 	private int jumpHeight = 500;
     private bool isGrounded = false;
 	private bool losing = false;
-	private GameObject CameraCheck;
-    private scoremanager scorer;
-
+	private GameObject cameraObject;
+   
 	void Start () {
-        CameraCheck = GameObject.Find("Main Camera");
-        scorer = GameObject.Find("Scorer").GetComponent<scoremanager>();
+        cameraObject = GameObject.Find("Main Camera");
         DontDestroyOnLoad(this);
 	}
 	
@@ -23,15 +21,17 @@ public class playerscript : MonoBehaviour {
 		this.keyboardControls();
 		//this.iOSControls();
 		this.mouseControls();
-		this.checkBounds();
 		this.checkForDidLose();
 	}
 
 	void FixedUpdate() {
 		RaycastHit2D[] hits;
 		Vector3 vect = transform.position;
-		vect.y = vect.y - 1f;
+		vect.y = vect.y - 0.5f;
+		Debug.Log (vect);
+
 		hits = Physics2D.RaycastAll(vect, Vector2.zero);
+
 		int i = 0;
 		bool temp = false;
 		while (i < hits.Length) {
@@ -116,10 +116,6 @@ public class playerscript : MonoBehaviour {
 		
 		if (Input.GetButtonDown("Jump")){
 			playerJump();
-			Debug.Log("*****");
-			SpriteRenderer sr = GetComponent<SpriteRenderer>();
-			Debug.Log( sr.sprite.bounds.center.normalized );
-			Debug.Log("*****");
 		}
 		
 	}
@@ -137,87 +133,16 @@ public class playerscript : MonoBehaviour {
 	void xAxisMvmtLeft() {
 		transform.position -= Vector3.right * movementSpeed * Time.deltaTime;
 	}
-	
-	void checkBounds() {
-		/*
-		var dist = (transform.position - Camera.main.transform.position).z;
-		var leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).x;
-		var rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, dist)).x;
-		var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 2, dist)).y;
-		
-		transform.position = new Vector3(
-			Mathf.Clamp(transform.position.x, leftBorder, rightBorder),
-			Mathf.Clamp(transform.position.y, transform.position.y, topBorder),
-			transform.position.z);
-		*/
-	}
-	
+
 	bool checkIfOutOfBounds() {
-		return (transform.position.y <= CameraCheck.transform.position.y - 10 || transform.position.x >= 10 || transform.position.x <= -10);
+		return (transform.position.y <= cameraObject.transform.position.y - 10 || transform.position.x >= 10 || transform.position.x <= -10);
 	}
 	
 	void checkForDidLose() {
-		if (checkIfOutOfBounds()){
+		if (transform.position.y <= cameraObject.transform.position.y - 10){
             Application.LoadLevel("losescreen");
         }
 
     }
 
-/*
-	void OnCollisionEnter2D(Collision2D info) {
-        if (rigidbody2D.velocity.magnitude <= 3  ) {
-            isGrounded = true;
-        }
-        //increase deflaterate of balloon once player steps on it
-
-       if (info.gameObject.tag == "redplatform") {
-            var curballoon = info.gameObject.GetComponent<redballoonscript>();
-            curballoon.setDeflateRate(newdeflaterate);
-        }
-
-        if (info.gameObject.tag == "greenplatform") {
-            var curballoon = info.gameObject.GetComponent<greenballoon>();
-            curballoon.setDeflateRate(newdeflaterate);
-            scorer.newScoreRate(10);
-        }
-    }
-*/    
-
 }
-
-
-// Maybe allow balloons to deflate slower once you jump off?
-/*
-    void OnCollisionExit2D(Collision2D info)
-    {
-        if (info.gameObject.tag == "redplatform")
-        {
-
-            var curballoon = info.gameObject.GetComponent<redballoonscript>();
-            curballoon.setDeflateRate(.002f);
-        }
-
-    }
-    */
-
-//gives functionality to 2D rigidbodies to have different types of forces
-/*
-	Vector2 ApplyForceMode(Vector2 force, ForceMode forceMode)
-    {
-        switch (forceMode)
-        {
-            case ForceMode.Force:
-                return force;
-            case ForceMode.Impulse:
-                return force / Time.fixedDeltaTime;
-            case ForceMode.Acceleration:
-                return force * rigidbody2D.mass;
-            case ForceMode.VelocityChange:
-                return force * rigidbody2D.mass / Time.fixedDeltaTime;
-
-        }
-
-        return force;
-    }
-    */
-
