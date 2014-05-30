@@ -1,14 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class greenballoon : MonoBehaviour
+public class greenballoon : balloon
 {
-    public Vector2 speed = new Vector2(0, 4);
-    public Vector2 direction = new Vector2(0, 1);
-    public Vector2 movement;
-    public float deflaterate = .002f;
-    public float accel = 8;
-    public int floatingconst = 4;
     public Texture2D image = null;
     private bool messageIsVisible;
     private int messageTimer;
@@ -16,18 +10,16 @@ public class greenballoon : MonoBehaviour
     // Use this for initialization
     void Start() {
         messageTimer = 0;
+        speed = new Vector2(0, 4);
+        direction = new Vector2(0, 1);
+        deflaterate = .002f;
+        accel = 8;
+        floatingconst = 4;
     }
 
     // Update is called once per frame
     void Update() {
-        movement = new Vector2(
-            speed.x * direction.x,
-            speed.y * direction.y / floatingconst);
-        deflate();
-        speed += new Vector2(
-            0,
-            .01f);
-
+        base.deflate();
         this.transform.Translate(Vector3.up * accel * Time.deltaTime);
         messageTimer++;
         if(messageTimer > 120) {

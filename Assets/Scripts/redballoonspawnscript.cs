@@ -7,8 +7,8 @@ using System.Collections.Generic;
 public class redballoonspawnscript : MonoBehaviour {
 
     //balloon prefabs
-    public Transform redballoon;
-    public Transform greenballoon;
+    public GameObject redballoon;
+    public GameObject greenballoon;
 
 
     //keeps track of total balloons spawned
@@ -25,12 +25,15 @@ public class redballoonspawnscript : MonoBehaviour {
 
     //camera
     private GameObject camera;
+    private GameObject player;
 
     //allows manipulation of difficulty via score
     private scoretext scorer;
 
     //distance from camera spawner is set at
-    public int distance = 13;
+    public int distance = 10;
+
+    private balloonGetter getBalloon;
 
  
     //first trigger to increase difficulty
@@ -41,7 +44,9 @@ public class redballoonspawnscript : MonoBehaviour {
         totalBalloons = 0;
         timer = 0;
         camera = GameObject.Find("Main Camera");
+        player = GameObject.Find("player");
         scorer = GameObject.Find("Score").GetComponent<scoretext>();
+        getBalloon = this.GetComponent<balloonGetter>();
             
 	}
 	
@@ -50,7 +55,10 @@ public class redballoonspawnscript : MonoBehaviour {
 
         SpawnBalloons();
         //keeps spawner near camera (rubber banded?)
-        transform.position = (transform.position - camera.transform.position).normalized * distance + camera.transform.position;
+        var dist = (player.transform.position - Camera.main.transform.position).z;
+        var bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
+        transform.position = new Vector3(camera.transform.position.x, bottomBorder, dist);
+        //transform.position = (transform.position - camera.transform.position).normalized * distance + camera.transform.position;
 	}
 
     /// <summary>
@@ -102,7 +110,7 @@ public class redballoonspawnscript : MonoBehaviour {
 
         //(once score is 250?) 75% chance of spawning red balloon, 25% chance of spawning green balloon
         int score = scorer.getScore();
-        Transform balloon;
+        GameObject balloon;
 
         //cases
         var balloonrandomizer = Random.Range(0, 100);
@@ -116,24 +124,26 @@ public class redballoonspawnscript : MonoBehaviour {
 
         if (balloonrandomizer > 75 && score < threshold1)
         {
-            balloon = Instantiate(greenballoon) as Transform;
+            balloon = Instantiate(greenballoon) as GameObject;
             balloon.transform.parent = transform.parent;
-            balloon.position = curPos;
+            balloon.transform.position = curPos;
             totalBalloons++;
         }
 
         if (balloonrandomizer >= 50 && score >= threshold1)
         {
-            balloon = Instantiate(greenballoon) as Transform;
+            balloon = Instantiate(greenballoon) as GameObject;
             balloon.transform.parent = transform.parent;
-            balloon.position = curPos;
+            balloon.transform.position = curPos;
             totalBalloons++;
         }
         else
         {
-            balloon = Instantiate(redballoon) as Transform;
+            //balloon = Instantiate(redballoon) as Transform;
+            balloon = getBalloon.getNextBalloon();
+            balloon.SetActive(true);
             balloon.transform.parent = transform.parent;
-            balloon.position = curPos;
+            balloon.transform.position = curPos;
             totalBalloons++;
         }
         

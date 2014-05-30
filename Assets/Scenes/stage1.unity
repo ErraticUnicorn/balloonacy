@@ -83,6 +83,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 93164211}
   - 114: {fileID: 93164212}
+  - 114: {fileID: 93164213}
   m_Layer: 0
   m_Name: spawner
   m_TagString: Untagged
@@ -113,12 +114,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redballoon: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
-  greenballoon: {fileID: 400000, guid: 1035ac473c7d36646bba2fddc345e76b, type: 2}
+  greenballoon: {fileID: 100000, guid: 1035ac473c7d36646bba2fddc345e76b, type: 2}
   totalBalloons: 0
   timer: 0
   spawntime: 25
   distance: 13
   threshold1: 150
+--- !u!114 &93164213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93164210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63979c282764b4141bfe41f01e397b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balloonPool: 50
+  redballoon: {fileID: 100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
 --- !u!1001 &111460792
 Prefab:
   m_ObjectHideFlags: 0
@@ -165,6 +179,10 @@ Prefab:
     - target: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
       propertyPath: m_LocalScale.y
       value: 1.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+      propertyPath: m_Radius
+      value: .400000006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
@@ -279,9 +297,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1051853270}
-  - {fileID: 747881493}
-  - {fileID: 703951135}
   - {fileID: 2047541545}
+  - {fileID: 703951135}
+  - {fileID: 747881493}
   - {fileID: 1012478209}
   - {fileID: 93164211}
   m_Father: {fileID: 543741058}
@@ -431,6 +449,7 @@ MonoBehaviour:
   speed: {x: 0, y: 2.5}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
+  deflaterate: .00100000005
   accel: 4
   floatingconst: 4
   isVisible: 0
@@ -445,7 +464,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .300000012
+  m_Radius: .400000006
   m_Center: {x: 0, y: 0}
 --- !u!50 &703951133
 Rigidbody2D:
@@ -537,6 +556,10 @@ Prefab:
       propertyPath: m_TagString
       value: redplatform
       objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+      propertyPath: m_Radius
+      value: .400000006
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
   m_RootGameObject: {fileID: 703951130}
@@ -576,6 +599,7 @@ MonoBehaviour:
   speed: {x: 0, y: 2.5}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
+  deflaterate: .00100000005
   accel: 4
   floatingconst: 4
   isVisible: 0
@@ -590,7 +614,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .300000012
+  m_Radius: .400000006
   m_Center: {x: 0, y: 0}
 --- !u!50 &747881491
 Rigidbody2D:
@@ -773,7 +797,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .300000012
+  m_Radius: .400000006
   m_Center: {x: 0, y: 0}
 --- !u!114 &1012478213
 MonoBehaviour:
@@ -789,6 +813,7 @@ MonoBehaviour:
   speed: {x: 0, y: 1}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
+  deflaterate: .00100000005
   accel: 3
   floatingconst: 4
   isVisible: 0
@@ -1106,6 +1131,10 @@ Prefab:
       propertyPath: m_TagString
       value: redplatform
       objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+      propertyPath: m_Radius
+      value: .400000006
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
@@ -1345,6 +1374,10 @@ Prefab:
       propertyPath: m_TagString
       value: redplatform
       objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+      propertyPath: m_Radius
+      value: .400000006
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
   m_RootGameObject: {fileID: 747881488}
@@ -1426,6 +1459,7 @@ MonoBehaviour:
   speed: {x: 0, y: 2.5}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
+  deflaterate: .00100000005
   accel: 4
   floatingconst: 4
   isVisible: 0
@@ -1440,7 +1474,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .300000012
+  m_Radius: .400000006
   m_Center: {x: 0, y: 0}
 --- !u!50 &2047541543
 Rigidbody2D:

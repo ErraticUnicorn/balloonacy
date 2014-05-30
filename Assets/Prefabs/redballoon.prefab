@@ -54,7 +54,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .300000012
+  m_Radius: .400000006
   m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -70,6 +70,7 @@ MonoBehaviour:
   speed: {x: 0, y: 2.5}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
+  deflaterate: .00100000005
   accel: 4
   floatingconst: 4
   isVisible: 0

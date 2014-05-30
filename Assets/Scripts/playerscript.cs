@@ -25,25 +25,31 @@ public class playerscript : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		RaycastHit2D[] hits;
-		Vector3 vect = transform.position;
-		vect.y = vect.y - 0.5f;
-		Debug.Log (vect);
-
-		hits = Physics2D.RaycastAll(vect, Vector2.zero);
+		
+		Vector3 position1 = transform.position;
+		Vector3 position2 = transform.position;
+		Vector3 position3 = transform.position;
+		position1.x = position1.x - 0.5f;
+		position1.y = position1.y - 0.5f;
+		position2.x = position2.x + 0.5f;
+		position2.y = position2.y - 1.0f;
+		Vector2 pointA = new Vector2 (position1.x, position1.y);
+		Vector2 pointB = new Vector2 (position2.x, position2.y);
+		
+		Collider2D[] hits = Physics2D.OverlapAreaAll (pointA, pointB);
 
 		int i = 0;
 		bool temp = false;
 		while (i < hits.Length) {
-			RaycastHit2D hit = hits[i];
-			if (hit.collider != null) {
-				if(hit.collider.tag == "redplatform"){
-					var curballoon = hit.collider.gameObject.GetComponent<redballoonscript>();
-				    curballoon.setDeflateRate(newdeflaterate);
+			Collider2D hit = hits[i];
+			if (hit != null) {
+				if(hit.tag == "redplatform"){
+					var curballoon = hit.gameObject.GetComponent<redballoonscript>();
+					curballoon.setDeflateRate(newdeflaterate);
 					temp = true;
 				}
-				if(hit.collider.tag == "greenplatform"){
-					var curballoon = hit.collider.gameObject.GetComponent<greenballoon>();
+				if(hit.tag == "greenplatform"){
+					var curballoon = hit.gameObject.GetComponent<greenballoon>();
 					curballoon.setDeflateRate(newdeflaterate);
 					temp = true;
 				}
@@ -52,6 +58,7 @@ public class playerscript : MonoBehaviour {
 		}
 		isGrounded = temp;
 	}
+
 
 	void mouseControls() {
 		var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
