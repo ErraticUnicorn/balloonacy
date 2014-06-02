@@ -20,7 +20,7 @@ public class playerscript : MonoBehaviour {
 	void Update () {
 		this.keyboardControls();
 		//this.iOSControls();
-		this.mouseControls();
+		//this.mouseControls();
 		this.checkForDidLose();
 	}
 

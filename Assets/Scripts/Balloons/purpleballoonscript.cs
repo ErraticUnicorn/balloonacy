@@ -13,9 +13,9 @@ public class purpleballoonscript : balloon {
 	void Start () {
         speed = new Vector2(0, .5f);
         direction = new Vector2(0, 1);
-        deflaterate = .003f;
+        deflateRate = .003f;
         accel = 2f;
-        floatingconst = 4;
+        floatingConst = 4;
 
 
         camera = GameObject.Find("Main Camera");

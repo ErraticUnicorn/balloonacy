@@ -12,9 +12,9 @@ public class greenballoon : balloon
         messageTimer = 0;
         speed = new Vector2(0, 4);
         direction = new Vector2(0, 1);
-        deflaterate = .002f;
+        deflateRate = .002f;
         accel = 8;
-        floatingconst = 4;
+        floatingConst = 4;
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class greenballoon : balloon
     void deflate() {
         float xcheck = transform.localScale.x;
         if (xcheck >= 0) {
-            Vector3 reduce = new Vector3(deflaterate, deflaterate, 0);
+            Vector3 reduce = new Vector3(deflateRate, deflateRate, 0);
             transform.localScale -= reduce;
         }
         else {
@@ -49,11 +49,11 @@ public class greenballoon : balloon
     }
 
     public float getDeflateRate() {
-        return deflaterate;
+        return deflateRate;
     }
 
     public void setDeflateRate(float newrate) {
-        deflaterate = newrate;
+        deflateRate = newrate;
     }
 
     void OnCollisionEnter2D(Collision2D info) {

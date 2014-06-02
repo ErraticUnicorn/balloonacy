@@ -6,27 +6,40 @@ using System.Collections;
     public Vector2 speed;
     public Vector2 direction;
     public Vector2 movement;
-    public float deflaterate;
+    public float deflateRate;
     public float accel;
-    public int floatingconst;
+    public int floatingConst;
     public bool isVisible = false;
     public bool hasBecomeVisible = false;
 
     protected Vector3 originalScale;
+    protected float originalDeflateRate;
+
+    protected GameObject Player;
 
     void Start()
     {
-        originalScale = this.transform.localScale;
+        originalScale = new Vector3(1.2f, 1.2f, 1);
+        Player = GameObject.Find("Player");
+        originalDeflateRate = deflateRate;
     }
 
     protected void Update()
     {
-        movement = new Vector2(speed.x * direction.x, speed.y * direction.y / floatingconst);
+        movement = new Vector2(speed.x * direction.x, speed.y * direction.y / floatingConst);
         this.deflate();
         speed += new Vector2(0, .01f);
         this.transform.Translate(Vector3.up * accel * Time.deltaTime);
 
-        if (!isVisible && transform.localScale.x < .5 && !hasBecomeVisible)
+        if (!isVisible && this.transform.localScale.x < .5 && !hasBecomeVisible)
+        {
+            Invoke("Destroy", .1f);
+        }
+
+        //var dist = (Player.transform.position - Camera.main.transform.position).z;
+        var dist = 0;
+        var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, dist)).y;
+        if (this.transform.position.y > topBorder)
         {
             Invoke("Destroy", 1f);
         }
@@ -39,8 +52,9 @@ using System.Collections;
 
     protected void Destroy()
     {
+        this.transform.localScale = originalScale;
+        this.deflateRate = originalDeflateRate;
         this.gameObject.SetActive(false);
-        resetScale();
     }
 
     protected void OnDisable()
@@ -65,18 +79,12 @@ using System.Collections;
         this.transform.localScale = originalScale;
     }
 
-    protected void reset()
-    {
-        Vector3 originalscale = new Vector3(1, 1, 1);
-        transform.localScale = originalscale;
-    }
-
     protected void deflate()
     {
         float xcheck = transform.localScale.x;
         if (xcheck >= 0)
         {
-            Vector3 reduce = new Vector3(deflaterate, deflaterate, 0);
+            Vector3 reduce = new Vector3(deflateRate, deflateRate, 0);
             transform.localScale -= reduce;
         }
         else
@@ -88,11 +96,20 @@ using System.Collections;
 
     public float getDeflateRate()
     {
-        return deflaterate;
+        return deflateRate;
     }
 
     public void setDeflateRate(float newrate)
     {
-        deflaterate = newrate;
+        deflateRate = newrate;
+    }
+
+    public void onCollisionEnter2D(Collision2D point)
+    {
+        var contact = point.contacts[0];
+        if (contact.point.y < this.transform.position.y)
+        {
+            Invoke("Destroy", 1f);
+        }
     }
 }

@@ -7,8 +7,8 @@ using System.Collections;
     {
         speed = new Vector2(0, 2.5f);
         direction = new Vector2(0, 1);
-        deflaterate = .001f;
+        deflateRate = .001f;
         accel = 4.5f;
-        floatingconst = 4;
+        floatingConst = 4;
     }
 }

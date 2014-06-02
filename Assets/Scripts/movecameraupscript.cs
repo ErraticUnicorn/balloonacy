@@ -38,7 +38,6 @@ public class movecameraupscript : MonoBehaviour {
         }
 
         var dist = (Player.transform.position - Camera.main.transform.position).z;
-        var bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
         var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, dist)).y;
         if (Player.transform.position.y >= topBorder - 1)
         {

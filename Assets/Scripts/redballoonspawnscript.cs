@@ -22,6 +22,8 @@ public class redballoonspawnscript : MonoBehaviour {
     private int curBalloon = 0;
     //Array with the coordinates of next five balloons
     private List<Vector2> BalloonCoord;
+    //Array with balloons that are being spawned and have not entered the screen
+    private List<GameObject> SpawningBalloons;
 
     //camera
     private GameObject camera;
@@ -35,6 +37,9 @@ public class redballoonspawnscript : MonoBehaviour {
 
     private balloonGetter getBalloon;
 
+    //bottom border
+    private float bottomBorder;
+
  
     //first trigger to increase difficulty
     public int threshold1 = 250;
@@ -47,6 +52,7 @@ public class redballoonspawnscript : MonoBehaviour {
         player = GameObject.Find("player");
         scorer = GameObject.Find("Score").GetComponent<scoretext>();
         getBalloon = this.GetComponent<balloonGetter>();
+        SpawningBalloons = new List<GameObject>();
             
 	}
 	
@@ -56,9 +62,8 @@ public class redballoonspawnscript : MonoBehaviour {
         SpawnBalloons();
         //keeps spawner near camera (rubber banded?)
         var dist = (player.transform.position - Camera.main.transform.position).z;
-        var bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
+        bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
         transform.position = new Vector3(camera.transform.position.x, bottomBorder, dist);
-        //transform.position = (transform.position - camera.transform.position).normalized * distance + camera.transform.position;
 	}
 
     /// <summary>
@@ -94,9 +99,7 @@ public class redballoonspawnscript : MonoBehaviour {
         {
             timer = 0;
         }
-
         timer++;
-
     }
 
     /// <summary>
@@ -125,25 +128,61 @@ public class redballoonspawnscript : MonoBehaviour {
         if (balloonrandomizer > 75 && score < threshold1)
         {
             balloon = Instantiate(greenballoon) as GameObject;
+            foreach (GameObject b in SpawningBalloons)
+            {
+                if (b != null)
+                {
+                    if (balloon.renderer.bounds.Intersects(b.renderer.bounds))
+                    {
+                        return;
+                    }
+                }
+            }
             balloon.transform.parent = transform.parent;
             balloon.transform.position = curPos;
+            SpawningBalloons.Add(balloon);
             totalBalloons++;
         }
 
         if (balloonrandomizer >= 50 && score >= threshold1)
         {
             balloon = Instantiate(greenballoon) as GameObject;
+            foreach (GameObject b in SpawningBalloons)
+            {
+                if (b != null)
+                {
+                    if (balloon.renderer.bounds.Intersects(b.renderer.bounds))
+                    {
+                        return;
+                    }
+                }
+            }
             balloon.transform.parent = transform.parent;
             balloon.transform.position = curPos;
+            SpawningBalloons.Add(balloon);
             totalBalloons++;
         }
         else
         {
             //balloon = Instantiate(redballoon) as Transform;
+            Debug.Log("hi!");
             balloon = getBalloon.getNextBalloon();
+            /*foreach (GameObject b in SpawningBalloons)
+            {
+                if (b != null)
+                {
+                    if (balloon.renderer.bounds.Intersects(b.renderer.bounds))
+                    {
+                        return;
+                    }
+                }
+            }*/
             balloon.SetActive(true);
+            balloon.transform.localScale = new Vector3(1.2f, 1.2f, 1);
+            Debug.Log(balloon.transform.position);
             balloon.transform.parent = transform.parent;
             balloon.transform.position = curPos;
+            SpawningBalloons.Add(balloon);
             totalBalloons++;
         }
         
@@ -182,5 +221,20 @@ public class redballoonspawnscript : MonoBehaviour {
         }
 
         return BalloonPoints;
+    }
+
+    public void checkIfBalloonsAreVisible()
+    {
+        foreach (GameObject b in SpawningBalloons)
+        {
+            if (b.transform.position.y >= bottomBorder - 3)
+            {
+                SpawningBalloons.Remove(b);
+            }
+            if (!b.activeInHierarchy || b == null)
+            {
+                SpawningBalloons.Remove(b);
+            }
+        }
     }
 }

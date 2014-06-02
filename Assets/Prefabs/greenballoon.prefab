@@ -70,10 +70,12 @@ MonoBehaviour:
   speed: {x: 0, y: 4}
   direction: {x: 0, y: 1}
   movement: {x: 0, y: 0}
-  deflaterate: .00200000009
+  deflateRate: 0
   accel: 8
-  floatingconst: 4
-  image: {fileID: 0}
+  floatingConst: 0
+  isVisible: 0
+  hasBecomeVisible: 0
+  image: {fileID: 2800000, guid: 3dc5d34db0abd2d4a8f9158d3f17c9a1, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

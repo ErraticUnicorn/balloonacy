@@ -24,14 +24,13 @@ public class balloonGetter : MonoBehaviour {
         if (lastBalloon > balloonPool - 1) {
             lastBalloon = 0;
         }
-        if (balloons[lastBalloon].activeInHierarchy) {
-            lastBalloon = findInactiveBalloon();
-        }
-
         return balloons[lastBalloon];
     }
 
-    public int findInactiveBalloon() {
+}
+
+
+/*public int findInactiveBalloon() {
         for (int i = 0; i < balloons.Length; i++) {
             if (!balloons[i].activeInHierarchy) {
                 return i;
@@ -39,5 +38,4 @@ public class balloonGetter : MonoBehaviour {
         }
 
         return 0;
-    }
-}
+    }*/
