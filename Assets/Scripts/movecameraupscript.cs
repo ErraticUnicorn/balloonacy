@@ -19,10 +19,13 @@ public class movecameraupscript : MonoBehaviour {
         Cam = GameObject.Find("Main Camera");
         Player = GameObject.Find("player");
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-      
+
+		Cam.transform.position = new Vector3(Cam.transform.position.x,Player.transform.position.y,Cam.transform.position.z) ;
+
+		/*
         if (check == true) {
             float speed = 10;
             var step = speed * Time.deltaTime;
@@ -38,11 +41,13 @@ public class movecameraupscript : MonoBehaviour {
         }
 
         var dist = (Player.transform.position - Camera.main.transform.position).z;
+        var bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
         var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, dist)).y;
         if (Player.transform.position.y >= topBorder - 1)
-        {
+        {P
             check = true;
         }
+        */
 	}
 
     void OnTriggerEnter2D(Collider2D otherCollision) {

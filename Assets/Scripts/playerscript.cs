@@ -20,23 +20,22 @@ public class playerscript : MonoBehaviour {
 	void Update () {
 		this.keyboardControls();
 		//this.iOSControls();
-		//this.mouseControls();
+		this.mouseControls();
 		this.checkForDidLose();
 	}
 
 	void FixedUpdate() {
-		
+		float playerSize = 0.5f;
+
 		Vector3 position1 = transform.position;
 		Vector3 position2 = transform.position;
 		Vector3 position3 = transform.position;
-		position1.x = position1.x - 0.5f;
-		position1.y = position1.y - 0.5f;
-		position2.x = position2.x + 0.5f;
-		position2.y = position2.y - 1.0f;
-		Vector2 pointA = new Vector2 (position1.x, position1.y);
-		Vector2 pointB = new Vector2 (position2.x, position2.y);
-		
-		Collider2D[] hits = Physics2D.OverlapAreaAll (pointA, pointB);
+		position1.x = position1.x - playerSize;
+		position1.y = position1.y - playerSize;
+		position2.x = position2.x + playerSize;
+		position2.y = position2.y - 2*playerSize;
+
+		Collider2D[] hits = Physics2D.OverlapAreaAll (new Vector2 (position1.x, position1.y), new Vector2 (position2.x, position2.y));
 
 		int i = 0;
 		bool temp = false;
@@ -67,15 +66,11 @@ public class playerscript : MonoBehaviour {
             playerJump();
         }
 
-		if (Input.GetAxis("Mouse X") <= -1) {
-	         xAxisMvmtLeft();
-		}
-
-		if (screenPoint.origin.x < transform.position.x && !isGrounded) {
+		if (screenPoint.origin.x < transform.position.x) {
             xAxisMvmtLeft();
         }
 
-		if (screenPoint.origin.x > transform.position.x && !isGrounded) {
+		if (screenPoint.origin.x > transform.position.x) {
             xAxisMvmtRight();
         }
     }

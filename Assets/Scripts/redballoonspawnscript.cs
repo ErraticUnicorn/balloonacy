@@ -165,7 +165,7 @@ public class redballoonspawnscript : MonoBehaviour {
         else
         {
             //balloon = Instantiate(redballoon) as Transform;
-            Debug.Log("hi!");
+            //Debug.Log("hi!");
             balloon = getBalloon.getNextBalloon();
             /*foreach (GameObject b in SpawningBalloons)
             {
@@ -179,7 +179,7 @@ public class redballoonspawnscript : MonoBehaviour {
             }*/
             balloon.SetActive(true);
             balloon.transform.localScale = new Vector3(1.2f, 1.2f, 1);
-            Debug.Log(balloon.transform.position);
+            //Debug.Log(balloon.transform.position);
             balloon.transform.parent = transform.parent;
             balloon.transform.position = curPos;
             SpawningBalloons.Add(balloon);
