@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class playerscript : MonoBehaviour {
+public class Player : MonoBehaviour {
 
 	public Vector2 movement;
     public float movementSpeed = 5;
