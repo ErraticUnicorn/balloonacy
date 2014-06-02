@@ -13,7 +13,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,6 +71,10 @@ MonoBehaviour:
   movementSpeed: 5
   startpos: {x: 0, y: 0, z: 0}
   newdeflaterate: .00600000005
+  jumpHeight: 500
+  isGrounded: 0
+  losing: 0
+  cameraObject: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

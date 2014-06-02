@@ -829,10 +829,10 @@ GameObject:
   - 212: {fileID: 1051853273}
   - 61: {fileID: 1051853272}
   - 50: {fileID: 1051853271}
-  - 114: {fileID: 1051853275}
   - 114: {fileID: 1051853274}
+  - 114: {fileID: 1051853275}
   m_Layer: 0
-  m_Name: player
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -917,13 +917,12 @@ MonoBehaviour:
 --- !u!114 &1051853275
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 9bb53139951f9584ca233480788ef759,
-    type: 2}
-  m_PrefabInternal: {fileID: 1706267045}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1051853269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 337ccd4cb3613624897f3e5401c8d4ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 015493fb76ac043cfaf0983c6cf8d899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {x: 0, y: 0}
@@ -1330,7 +1329,8 @@ Prefab:
       propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 9bb53139951f9584ca233480788ef759, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9bb53139951f9584ca233480788ef759, type: 2}
   m_RootGameObject: {fileID: 1051853269}
   m_IsPrefabParent: 0
