@@ -56,6 +56,15 @@ public class PlayerController : MonoBehaviour {
                 if (hit.tag == "platform") {
                     var curballoon = hit.gameObject.GetComponent<BalloonModel>();
                     curballoon.setDeflateRate(newdeflaterate);
+                    Debug.Log(curballoon.getSpeed().y);
+                    if (!curballoon.isGreen)
+                    {
+                        curballoon.setSpeed(new Vector2(0, 20f));
+                    }
+                    else
+                    {
+                        curballoon.setSpeed(new Vector2(0, 25f));
+                    }
                     temp = true;
                 }
 			}  

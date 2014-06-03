@@ -115,14 +115,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c55afcddb68b4335b90d91497d22d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 2.5}
+  speed: {x: 0, y: 25}
   direction: {x: 0, y: 1}
   deflateRate: .00100000005
-  accel: 4.5
+  accel: 0
   floatingConst: 4
   isVisible: 0
   hasBecomeVisible: 0
   curSprite: {fileID: 21300000, guid: 797471d7214fc564fa54533c6fb28d3c, type: 3}
+  isGreen: 0
 --- !u!58 &43772646
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -222,7 +223,6 @@ MonoBehaviour:
   timer: 0
   spawntime: 25
   distance: 10
-  threshold1: 250
 --- !u!114 &93164213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,14 +553,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c55afcddb68b4335b90d91497d22d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 2.5}
+  speed: {x: 0, y: 25}
   direction: {x: 0, y: 1}
   deflateRate: .00100000005
-  accel: 4.5
+  accel: 0
   floatingConst: 4
   isVisible: 0
   hasBecomeVisible: 0
   curSprite: {fileID: 21300000, guid: 797471d7214fc564fa54533c6fb28d3c, type: 3}
+  isGreen: 0
 --- !u!58 &870541210
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -887,14 +888,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c55afcddb68b4335b90d91497d22d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 2.5}
+  speed: {x: 0, y: 25}
   direction: {x: 0, y: 1}
   deflateRate: .00100000005
-  accel: 4.5
+  accel: 0
   floatingConst: 4
   isVisible: 0
   hasBecomeVisible: 0
   curSprite: {fileID: 21300000, guid: 797471d7214fc564fa54533c6fb28d3c, type: 3}
+  isGreen: 0
 --- !u!58 &1352476059
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1214,14 +1216,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c55afcddb68b4335b90d91497d22d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 2.5}
+  speed: {x: 0, y: 25}
   direction: {x: 0, y: 1}
   deflateRate: .00100000005
-  accel: 4.5
+  accel: 0
   floatingConst: 4
   isVisible: 0
   hasBecomeVisible: 0
   curSprite: {fileID: 21300000, guid: 797471d7214fc564fa54533c6fb28d3c, type: 3}
+  isGreen: 0
 --- !u!58 &2047541542
 CircleCollider2D:
   m_ObjectHideFlags: 0

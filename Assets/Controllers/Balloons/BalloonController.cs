@@ -94,7 +94,11 @@ public class BalloonController : MonoBehaviour {
 
         int score = scorer.getScore();
         GameObject balloon;
-	 	int threshold = 50;
+        int greenThreshold = 75;
+        if (score >= 250)
+        {
+            greenThreshold = 50;
+        }
 
         var balloonrandomizer = Random.Range(0, 100);
 
@@ -103,8 +107,8 @@ public class BalloonController : MonoBehaviour {
         this.transform.position.y + coordinate.y - 5,
         0
         );
-
-		if (balloonrandomizer > 75 || (balloonrandomizer > 50 && score>threshold )) {
+        //|| (balloonrandomizer > 50 && score>threshold )
+		if (balloonrandomizer > greenThreshold ) {
 			balloon = spawnGreenBalloon(curPos);
    		} else {
             balloon = spawnRedBalloon(curPos);
@@ -166,11 +170,12 @@ public class BalloonController : MonoBehaviour {
         balloon = getNextBalloon();
         BalloonModel BalloonMod = balloon.GetComponent<BalloonModel>();
         BalloonMod.curSprite = greenSprite;
-		BalloonMod.speed = new Vector2(0, 2.5f);
+		BalloonMod.speed = new Vector2(0, 30f);
 		BalloonMod.direction = new Vector2(0, 1);
         BalloonMod.deflateRate = .002f;
-		BalloonMod.accel = 4.5f;
+		BalloonMod.accel = 2f;
 		BalloonMod.floatingConst = 4;
+        BalloonMod.isGreen = true;
         balloon.transform.parent = this.transform.parent;
         balloon.transform.position = curPos;
         SpawningBalloons.Add(balloon);
@@ -184,10 +189,10 @@ public class BalloonController : MonoBehaviour {
         balloon = getNextBalloon();
         BalloonModel BalloonMod = balloon.GetComponent<BalloonModel>();
         BalloonMod.curSprite = redSprite;
-        BalloonMod.speed = new Vector2(0, 2.5f);
+        BalloonMod.speed = new Vector2(0, 25f);
         BalloonMod.direction = new Vector2(0, 1);
         BalloonMod.deflateRate = .001f;
-        BalloonMod.accel = 4.5f;
+        BalloonMod.accel = 1f;
         BalloonMod.floatingConst = 4;
         balloon.transform.parent = this.transform.parent;
         balloon.transform.position = curPos;
