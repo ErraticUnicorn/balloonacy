@@ -4,85 +4,71 @@ using System.Collections;
 //arraylist & lists
 using System.Collections.Generic;
 
-public class redballoonspawnscript : MonoBehaviour {
+public class BalloonController : MonoBehaviour {
 
-    //balloon prefabs
     public GameObject redballoon;
     public GameObject greenballoon;
-
-
-    //keeps track of total balloons spawned
-    public int totalBalloons;
-
-    //timer to buffer when balloons spawn and the timing between balloons
-    public int timer;
+	public int balloonPool = 50;
+	private int lastBalloon = -1;
+	private GameObject[] balloons;
+	public int totalBalloons;
+	public int timer;
     public int spawntime = 25;
-
-    //check for ArrayList -- see Balloon spawning method
-    private int curBalloon = 0;
-    //Array with the coordinates of next five balloons
+	private int curBalloon = 0;
     private List<Vector2> BalloonCoord;
-    //Array with balloons that are being spawned and have not entered the screen
     private List<GameObject> SpawningBalloons;
-
-    //camera
-    private GameObject camera;
+	private GameObject camera;
     private GameObject player;
+	private scoretext scorer;
+	public int distance = 10;
+	private float bottomBorder;
+	public int threshold1 = 250;
 
-    //allows manipulation of difficulty via score
-    private scoretext scorer;
-
-    //distance from camera spawner is set at
-    public int distance = 10;
-
-    private balloonGetter getBalloon;
-
-    //bottom border
-    private float bottomBorder;
-
- 
-    //first trigger to increase difficulty
-    public int threshold1 = 250;
-
-	// Use this for initialization, inits camera, score, timer, and total balloons
 	void Start () {
         totalBalloons = 0;
         timer = 0;
         camera = GameObject.Find("Main Camera");
         player = GameObject.Find("player");
         scorer = GameObject.Find("Score").GetComponent<scoretext>();
-        getBalloon = this.GetComponent<balloonGetter>();
         SpawningBalloons = new List<GameObject>();
             
 	}
+
+	void Awake () {
+		balloons = new GameObject[balloonPool];
+		for(int i = 0; i < balloons.Length; i++) {
+			balloons[i] = Instantiate(redballoon) as GameObject;
+			balloons[i].SetActive(false);
+			balloons[i].transform.parent = transform.parent;
+		}
+	}
 	
+	public GameObject getNextBalloon() {
+		lastBalloon++;
+		if (lastBalloon > balloonPool - 1) {
+			lastBalloon = 0;
+		}
+		return balloons[lastBalloon];
+	}
+
 	// Update is called once per frame
 	void Update () {
 
         SpawnBalloons();
-        //keeps spawner near camera (rubber banded?)
         var dist = (player.transform.position - Camera.main.transform.position).z;
         bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
         transform.position = new Vector3(camera.transform.position.x, bottomBorder, dist);
 	}
 
-    /// <summary>
-    /// Uses array list of four balloons to spawn balloons based on a timer. curBalloon is an index checking where in the array we are at
-    /// the boolean reverse, reverses the spawning order of the balloons to add some more complexity
-    /// </summary>
-
-    //how do I avoid this global variable? C# doesn't allow static variables
     bool reverse = true;
-    void SpawnBalloons()
-    {
-        
-        if (curBalloon >= 4)
-        {
+
+    void SpawnBalloons() {
+
+		if (curBalloon >= 4) {
             curBalloon = 0;
             reverse = !reverse;
         }
-        if (curBalloon == 0)
-        {
+        if (curBalloon == 0) {
             BalloonCoord = getBalloonPoints();
         }
         if (timer == spawntime && reverse ==true)
@@ -102,23 +88,13 @@ public class redballoonspawnscript : MonoBehaviour {
         timer++;
     }
 
-    /// <summary>
-    /// spawns a balloon based on a coordinate and other variables such as score and randomizers to spawn different 
-    /// types of balloons. My first instinct, and the easier and more crazy way is just to randomize positions on balloons each 
-    /// run through
-    /// </summary>
-    /// <param name="coordinate"> Takes in a coordinate to spawn the balloon at said location</param>
-
     void spawnBalloon(Vector2 coordinate){
 
-        //(once score is 250?) 75% chance of spawning red balloon, 25% chance of spawning green balloon
         int score = scorer.getScore();
         GameObject balloon;
 
-        //cases
         var balloonrandomizer = Random.Range(0, 100);
 
-        //new point with an offset behind the spawner
         Vector3 curPos = new Vector3(
         this.transform.position.x + coordinate.x,
         this.transform.position.y + coordinate.y - 5,
@@ -162,24 +138,19 @@ public class redballoonspawnscript : MonoBehaviour {
             SpawningBalloons.Add(balloon);
             totalBalloons++;
         }
-        else
-        {
-            //balloon = Instantiate(redballoon) as Transform;
-            //Debug.Log("hi!");
-            balloon = getBalloon.getNextBalloon();
-            /*foreach (GameObject b in SpawningBalloons)
-            {
-                if (b != null)
-                {
-                    if (balloon.renderer.bounds.Intersects(b.renderer.bounds))
-                    {
+        else {
+			balloon = getNextBalloon();
+
+            foreach (GameObject b in SpawningBalloons) {
+            	if (b != null) {
+                    if (balloon.renderer.bounds.Intersects(b.renderer.bounds)) {
                         return;
                     }
                 }
-            }*/
-            balloon.SetActive(true);
+            }
+
+			balloon.SetActive(true);
             balloon.transform.localScale = new Vector3(1.2f, 1.2f, 1);
-            //Debug.Log(balloon.transform.position);
             balloon.transform.parent = transform.parent;
             balloon.transform.position = curPos;
             SpawningBalloons.Add(balloon);

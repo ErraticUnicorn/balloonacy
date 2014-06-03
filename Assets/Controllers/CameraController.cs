@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 
 //This class handles parallax
-public class scrollingscript : MonoBehaviour {
+public class CameraController : MonoBehaviour {
     public Vector2 speed = new Vector2(2, 2);
 	public Vector2 direction = new Vector2(0, -1);
 	public bool isLinkedToCamera = false;
 	public bool isLooping = false;
 	private List<Transform> backgroundPart;
-    
+	private GameObject Cam;
+	private GameObject Player;
+	
+
 	void Start () {
         if (isLooping)
         {
+			Cam = GameObject.Find("Main Camera");
+			Player = GameObject.Find("player");
+
             backgroundPart = new List<Transform>();
 
             for (int i = 0; i < transform.childCount; i++) {
@@ -35,7 +41,9 @@ public class scrollingscript : MonoBehaviour {
         }
 
         if (isLooping) {
-            backgroundPart = backgroundPart.OrderBy( t => t.position.y ).ToList();
+			
+			Cam.transform.position = new Vector3(Cam.transform.position.x,Player.transform.position.y,Cam.transform.position.z) ;
+			backgroundPart = backgroundPart.OrderBy( t => t.position.y ).ToList();
 			Transform firstChild = backgroundPart.FirstOrDefault();
 			Transform secondChild = backgroundPart.LastOrDefault();
 			Vector3 lastPosition = secondChild.transform.position;

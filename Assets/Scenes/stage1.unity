@@ -83,7 +83,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 93164211}
   - 114: {fileID: 93164212}
-  - 114: {fileID: 93164213}
   m_Layer: 0
   m_Name: spawner
   m_TagString: Untagged
@@ -110,29 +109,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 93164210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6141b608405b97c45ad84d2bff663990, type: 3}
+  m_Script: {fileID: 11500000, guid: aad36a4e3ad38482480d470a144c2d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redballoon: {fileID: 400000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+  redballoon: {fileID: 100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
   greenballoon: {fileID: 100000, guid: 1035ac473c7d36646bba2fddc345e76b, type: 2}
+  balloonPool: 50
   totalBalloons: 0
   timer: 0
   spawntime: 25
-  distance: 13
-  threshold1: 150
---- !u!114 &93164213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 93164210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63979c282764b4141bfe41f01e397b92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  balloonPool: 50
-  redballoon: {fileID: 100000, guid: 2ccdb5ecde44c444a8e5aabff473edd1, type: 2}
+  distance: 10
+  threshold1: 250
 --- !u!1001 &111460792
 Prefab:
   m_ObjectHideFlags: 0
@@ -270,6 +257,9 @@ MonoBehaviour:
   direction: {x: 0, y: -1}
   isLinkedToCamera: 0
   isLooping: 0
+  backgroundPart: []
+  Cam: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &475918086
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +308,9 @@ MonoBehaviour:
   direction: {x: 0, y: 1}
   isLinkedToCamera: 1
   isLooping: 0
+  backgroundPart: []
+  Cam: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &507795901
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,7 +825,7 @@ GameObject:
   - 114: {fileID: 1051853274}
   - 114: {fileID: 1051853275}
   m_Layer: 0
-  m_Name: Player
+  m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,7 +915,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1051853269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015493fb76ac043cfaf0983c6cf8d899, type: 3}
+  m_Script: {fileID: 11500000, guid: 3148eadf0a98348679680093dc61ca25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {x: 0, y: 0}
@@ -1022,8 +1015,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd58148a4a9c1342be58884d2d63bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cam: {fileID: 0}
+  Player: {fileID: 0}
   speed: {x: 2, y: 2}
   direction: {x: 0, y: -1}
+  check: 0
 --- !u!61 &1105958221
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1072,7 +1068,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1237381237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764bf8173fe66ad4e8feb00cd960c1f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 44952cb12625a494b91e2692ac2545bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 1, y: 1}
@@ -1425,6 +1421,9 @@ MonoBehaviour:
   direction: {x: 0, y: -1}
   isLinkedToCamera: 0
   isLooping: 0
+  backgroundPart: []
+  Cam: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &2047541540
 GameObject:
   m_ObjectHideFlags: 0
