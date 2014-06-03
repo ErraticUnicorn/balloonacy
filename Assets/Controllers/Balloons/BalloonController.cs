@@ -55,7 +55,6 @@ public class BalloonController : MonoBehaviour {
 		return balloons[lastBalloon];
 	}
 
-	// Update is called once per frame
 	void Update () {
 
         SpawnBalloons();

@@ -27,12 +27,10 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate() {
 		float playerSize = 0.5f;
-
 		Vector3 position1 = transform.position;
 		Vector3 position2 = transform.position;
-		Vector3 position3 = transform.position;
 		position1.x = position1.x - playerSize;
-		position1.y = position1.y - playerSize;
+		position1.y = position1.y ;
 		position2.x = position2.x + playerSize;
 		position2.y = position2.y - 2*playerSize;
 
@@ -54,48 +52,26 @@ public class PlayerController : MonoBehaviour {
 		isGrounded = temp;
 	}
 
-
 	void mouseControls() {
 		var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Input.GetMouseButtonDown(0) && isGrounded) {
-            playerJump();
-        }
-
-		if (screenPoint.origin.x < transform.position.x) {
-            xAxisMvmtLeft();
-        }
-
-		if (screenPoint.origin.x > transform.position.x) {
-            xAxisMvmtRight();
-        }
+        if (Input.GetMouseButtonDown(0) && isGrounded) {playerJump();}
+		if (screenPoint.origin.x < transform.position.x) { xAxisMvmtLeft()  ;}
+		if (screenPoint.origin.x > transform.position.x) { xAxisMvmtRight() ;}
     }
 
 	void iOSControls() {
-
         foreach (Touch touch in Input.touches) {
-            
-			if (touch.phase == TouchPhase.Began) {
-                playerJump();
-            }
-
 			var screenPoint = Camera.main.ScreenPointToRay(touch.position);
-
-			if (screenPoint.origin.x < transform.position.x && !isGrounded) {
-                xAxisMvmtLeft();
-            }
-
-			if (screenPoint.origin.x > transform.position.x && !isGrounded) {
-                xAxisMvmtRight();
-            }
+			if (touch.phase == TouchPhase.Began) {playerJump();}
+			if (screenPoint.origin.x < transform.position.x && !isGrounded) {xAxisMvmtLeft();}
+			if (screenPoint.origin.x > transform.position.x && !isGrounded) {xAxisMvmtRight();}
         }
 
         Vector3 dir = Vector3.zero;
-
         dir.x = Input.acceleration.x;
         //dir.y = -Input.acceleration.y;
-
-        if (dir.sqrMagnitude > 1){
+        
+		if (dir.sqrMagnitude > 1){
             dir.Normalize();
         }
 
@@ -104,18 +80,9 @@ public class PlayerController : MonoBehaviour {
     }
 	
 	void keyboardControls(){
-		if (Input.GetKey("left")){
-			xAxisMvmtLeft();
-		}
-		
-		if (Input.GetKey("right")){
-			xAxisMvmtRight();
-		}
-		
-		if (Input.GetButtonDown("Jump")){
-			playerJump();
-		}
-		
+		if (Input.GetButtonDown("Jump")){playerJump();}
+		if (Input.GetKey("left")){xAxisMvmtLeft();}
+		if (Input.GetKey("right")){xAxisMvmtRight();}
 	}
 
     void playerJump() {

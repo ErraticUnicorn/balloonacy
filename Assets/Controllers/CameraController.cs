@@ -11,13 +11,15 @@ public class CameraController : MonoBehaviour {
 	private List<Transform> backgroundPart;
 	private GameObject Cam;
 	private GameObject Player;
-	
 
-	void Start () {
-        if (isLooping)
-        {
+	private int loopCount;
+
+	void Start() {
+        if (isLooping){
+
 			Cam = GameObject.Find("Main Camera");
 			Player = GameObject.Find("player");
+			this.loopCount = 0;
 
             backgroundPart = new List<Transform>();
 
@@ -30,37 +32,50 @@ public class CameraController : MonoBehaviour {
         }
 	}
 
+
 	void Update () {
 
-		Vector3 movement = new Vector3( speed.x * direction.x, speed.y * direction.y, 0);
-        movement *= Time.deltaTime;
-        transform.Translate(movement);
+		if (isLooping) {
 
-        if(isLinkedToCamera) {
-            Camera.main.transform.Translate(movement);
-        }
+			if(this.loopCount >= -1) {
+				Cam.transform.position = new Vector3(Cam.transform.position.x,Player.transform.position.y,Cam.transform.position.z) ;
+			}
 
-        if (isLooping) {
-			
-			Cam.transform.position = new Vector3(Cam.transform.position.x,Player.transform.position.y,Cam.transform.position.z) ;
 			backgroundPart = backgroundPart.OrderBy( t => t.position.y ).ToList();
 			Transform firstChild = backgroundPart.FirstOrDefault();
 			Transform secondChild = backgroundPart.LastOrDefault();
 			Vector3 lastPosition = secondChild.transform.position;
 			Vector3 lastSize = secondChild.renderer.bounds.max - secondChild.renderer.bounds.min ;
             
-            if (!firstChild.renderer.IsVisibleFrom(Camera.main)) {
+			if (!firstChild.renderer.IsVisibleFrom(Camera.main)) {
 				firstChild.position = new Vector3(firstChild.position.x, lastPosition.y + lastSize.y, firstChild.position.z);
 				backgroundPart.Remove(firstChild);
 				backgroundPart.Add(firstChild);
-					
+				this.loopCount++;
 			} 
 
 			if (!secondChild.renderer.IsVisibleFrom(Camera.main)) {
+				this.loopCount--;
+				if(this.loopCount >= -1) {
 					secondChild.position = new Vector3(secondChild.position.x, firstChild.position.y - lastSize.y, secondChild.position.z);
 					backgroundPart.Remove(secondChild);
 					backgroundPart.Add(secondChild);
+				}
 			}
+
         }
 	}
 }
+
+
+
+
+//Vector3 movement = new Vector3( speed.x * direction.x, speed.y * direction.y, 0);
+//movement *= Time.deltaTime;
+//transform.Translate(movement);
+
+//if(isLinkedToCamera) {
+//	//Camera.main.transform.Translate(movement);
+//}
+
+
