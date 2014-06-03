@@ -51,10 +51,9 @@ public class BalloonController : MonoBehaviour {
 		return balloons[lastBalloon];
 	}
 
-	// Update is called once per frame
 	void Update () {
 
-        SpawnBalloons();
+        //SpawnBalloons();
         var dist = (player.transform.position - Camera.main.transform.position).z;
         bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
         transform.position = new Vector3(camera.transform.position.x, bottomBorder, dist);

@@ -250,16 +250,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 266237685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764bf8173fe66ad4e8feb00cd960c1f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 44952cb12625a494b91e2692ac2545bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: .5, y: .5}
   direction: {x: 0, y: -1}
   isLinkedToCamera: 0
   isLooping: 0
-  backgroundPart: []
-  Cam: {fileID: 0}
-  Player: {fileID: 0}
 --- !u!1 &475918086
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,16 +298,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 475918086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764bf8173fe66ad4e8feb00cd960c1f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 44952cb12625a494b91e2692ac2545bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 1, y: 1}
   direction: {x: 0, y: 1}
   isLinkedToCamera: 1
   isLooping: 0
-  backgroundPart: []
-  Cam: {fileID: 0}
-  Player: {fileID: 0}
 --- !u!1 &507795901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,14 +1006,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1105958214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd58148a4a9c1342be58884d2d63bc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 44952cb12625a494b91e2692ac2545bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cam: {fileID: 0}
-  Player: {fileID: 0}
   speed: {x: 2, y: 2}
   direction: {x: 0, y: -1}
-  check: 0
+  isLinkedToCamera: 0
+  isLooping: 0
 --- !u!61 &1105958221
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1414,16 +1407,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1862826741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764bf8173fe66ad4e8feb00cd960c1f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 44952cb12625a494b91e2692ac2545bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 1.5, y: 1.5}
   direction: {x: 0, y: -1}
   isLinkedToCamera: 0
   isLooping: 0
-  backgroundPart: []
-  Cam: {fileID: 0}
-  Player: {fileID: 0}
 --- !u!1 &2047541540
 GameObject:
   m_ObjectHideFlags: 0
