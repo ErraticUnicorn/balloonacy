@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Models;
 
-public class purpleballoonscript : balloon {
+public class SafetyBalloon : BalloonModel {
   
     public int spawnconst = 11;
 
@@ -16,8 +17,6 @@ public class purpleballoonscript : balloon {
         deflateRate = .003f;
         accel = 2f;
         floatingConst = 4;
-
-
         camera = GameObject.Find("Main Camera");
         player = GameObject.Find("player");
         Vector3 curCamPos = camera.transform.position;

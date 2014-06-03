@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Models;
 
 public class PlayerController : MonoBehaviour {
 
@@ -42,16 +43,11 @@ public class PlayerController : MonoBehaviour {
 		while (i < hits.Length) {
 			Collider2D hit = hits[i];
 			if (hit != null) {
-				if(hit.tag == "redplatform"){
-					var curballoon = hit.gameObject.GetComponent<redballoonscript>();
-					curballoon.setDeflateRate(newdeflaterate);
-					temp = true;
-				}
-				if(hit.tag == "greenplatform"){
-					var curballoon = hit.gameObject.GetComponent<greenballoon>();
-					curballoon.setDeflateRate(newdeflaterate);
-					temp = true;
-				}
+                if (hit.tag == "platform") {
+                    var curballoon = hit.gameObject.GetComponent<BalloonModel>();
+                    curballoon.setDeflateRate(newdeflaterate);
+                    temp = true;
+                }
 			}  
 			i++;
 		}

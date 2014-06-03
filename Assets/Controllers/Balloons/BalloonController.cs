@@ -3,11 +3,15 @@ using System.Collections;
 
 //arraylist & lists
 using System.Collections.Generic;
+using Models;
 
 public class BalloonController : MonoBehaviour {
 
-    public GameObject redballoon;
-    public GameObject greenballoon;
+    public GameObject balloonPrefab;
+    public Sprite redSprite;
+    public Sprite greenSprite;
+
+
 	public int balloonPool = 50;
 	private int lastBalloon = -1;
 	private GameObject[] balloons;
@@ -37,7 +41,7 @@ public class BalloonController : MonoBehaviour {
 	void Awake () {
 		balloons = new GameObject[balloonPool];
 		for(int i = 0; i < balloons.Length; i++) {
-			balloons[i] = Instantiate(redballoon) as GameObject;
+			balloons[i] = Instantiate(balloonPrefab) as GameObject;
 			balloons[i].SetActive(false);
 			balloons[i].transform.parent = transform.parent;
 		}
@@ -103,58 +107,15 @@ public class BalloonController : MonoBehaviour {
 
         if (balloonrandomizer > 75 && score < threshold1)
         {
-            balloon = Instantiate(greenballoon) as GameObject;
-            foreach (GameObject b in SpawningBalloons)
-            {
-                if (b != null)
-                {
-                    if (balloon.renderer.bounds.Intersects(b.renderer.bounds))
-                    {
-                        return;
-                    }
-                }
-            }
-            balloon.transform.parent = transform.parent;
-            balloon.transform.position = curPos;
-            SpawningBalloons.Add(balloon);
-            totalBalloons++;
+            balloon = spawnGreenBalloon(curPos);
         }
 
         if (balloonrandomizer >= 50 && score >= threshold1)
         {
-            balloon = Instantiate(greenballoon) as GameObject;
-            foreach (GameObject b in SpawningBalloons)
-            {
-                if (b != null)
-                {
-                    if (balloon.renderer.bounds.Intersects(b.renderer.bounds))
-                    {
-                        return;
-                    }
-                }
-            }
-            balloon.transform.parent = transform.parent;
-            balloon.transform.position = curPos;
-            SpawningBalloons.Add(balloon);
-            totalBalloons++;
+            balloon = spawnGreenBalloon(curPos);
         }
         else {
-			balloon = getNextBalloon();
-
-            foreach (GameObject b in SpawningBalloons) {
-            	if (b != null) {
-                    if (balloon.renderer.bounds.Intersects(b.renderer.bounds)) {
-                        return;
-                    }
-                }
-            }
-
-			balloon.SetActive(true);
-            balloon.transform.localScale = new Vector3(1.2f, 1.2f, 1);
-            balloon.transform.parent = transform.parent;
-            balloon.transform.position = curPos;
-            SpawningBalloons.Add(balloon);
-            totalBalloons++;
+            balloon = spawnRedBalloon(curPos);
         }
         
     }
@@ -208,4 +169,72 @@ public class BalloonController : MonoBehaviour {
             }
         }
     }
+    public GameObject spawnGreenBalloon(Vector3 curPos) {
+        GameObject balloon;
+        balloon = getNextBalloon();
+        BalloonModel BalloonMod = balloon.GetComponent<BalloonModel>();
+        BalloonMod.curSprite = greenSprite;
+        BalloonMod.speed = new Vector2(0, 4);
+        BalloonMod.direction = new Vector2(0, 1);
+        BalloonMod.deflateRate = .002f;
+        BalloonMod.accel = 8;
+        BalloonMod.floatingConst = 4;
+        balloon.transform.parent = this.transform.parent;
+        balloon.transform.position = curPos;
+        SpawningBalloons.Add(balloon);
+        balloon.SetActive(true);
+        totalBalloons++;
+        return balloon;
+    }
+
+    public GameObject spawnRedBalloon(Vector3 curPos) {
+        GameObject balloon;
+        balloon = getNextBalloon();
+        BalloonModel BalloonMod = balloon.GetComponent<BalloonModel>();
+        BalloonMod.curSprite = redSprite;
+        BalloonMod.speed = new Vector2(0, 2.5f);
+        BalloonMod.direction = new Vector2(0, 1);
+        BalloonMod.deflateRate = .001f;
+        BalloonMod.accel = 4.5f;
+        BalloonMod.floatingConst = 4;
+        balloon.transform.parent = this.transform.parent;
+        balloon.transform.position = curPos;
+        SpawningBalloons.Add(balloon);
+        totalBalloons++;
+        balloon.SetActive(true);
+        return balloon;
+    }
 }
+
+/*   public Texture2D image = null;
+    private bool messageIsVisible;
+    private int messageTimer;
+ * 
+ * void Start() {
+ *      messageTimer = 0;
+ * }
+ * 
+ *void Update() {
+        messageTimer++;
+        if(messageTimer > 120) {
+            messageTimer = 0;
+            messageIsVisible = false;
+        }
+    }
+ * 
+ *     void OnCollisionEnter2D(Collision2D info) {
+        if (info.gameObject.tag == "Player") {
+            messageIsVisible = true;
+        }
+    }
+
+    void OnGUI() {
+        if (messageIsVisible) {
+            GUI.backgroundColor = new Color(0, 0, 0, 0);
+            GUI.Button(new Rect(Screen.width / 2, Screen.height / 2, 200, 200), image);
+        }
+    }
+
+
+*/
+

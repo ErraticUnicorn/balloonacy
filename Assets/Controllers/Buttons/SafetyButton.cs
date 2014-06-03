@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GUI_Button : MonoBehaviour {
+public class SafetyButton : MonoBehaviour {
 
     //purple balloon
     public Transform purpleballoon;

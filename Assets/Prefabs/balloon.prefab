@@ -9,12 +9,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 50: {fileID: 5000000}
   - 58: {fileID: 5800000}
+  - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: greenballoon
-  m_TagString: greenplatform
+  m_Name: balloon
+  m_TagString: platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.248459339, y: -3.11943293, z: 10}
+  m_LocalPosition: {x: -2.97932482, y: -5.88885355, z: 0}
   m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,7 +54,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .600000024
+  m_Radius: .400000006
   m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -64,18 +64,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e8d553bbf1a5047933d93bf7a0d76d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c55afcddb68b4335b90d91497d22d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 4}
-  direction: {x: 0, y: 1}
-  movement: {x: 0, y: 0}
+  speed: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
   deflateRate: 0
-  accel: 8
-  floatingConst: 0
+  accel: 0
+  floatingConst: 4
   isVisible: 0
   hasBecomeVisible: 0
-  image: {fileID: 2800000, guid: 3dc5d34db0abd2d4a8f9158d3f17c9a1, type: 3}
+  curSprite: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -97,7 +96,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300002, guid: 2b102d077c5227947b1ecb086dd0657c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
