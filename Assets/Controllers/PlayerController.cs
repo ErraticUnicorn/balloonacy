@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour {
 		//this.iOSControls();
 		this.mouseControls();
 		this.checkForDidLose();
+		if (transform.position.x >= 10.01) {transform.position = new Vector3(10.01f,transform.position.y,transform.position.z);}
+		if (transform.position.x < -10) {transform.position = new Vector3(-10,transform.position.y,transform.position.z);}
 	}
 
 	void FixedUpdate() {
