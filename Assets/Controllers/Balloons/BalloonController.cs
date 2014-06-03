@@ -104,9 +104,6 @@ public class BalloonController : MonoBehaviour {
         0
         );
 
-		Debug.Log ("*******");
-		Debug.Log (score);
-
 		if (balloonrandomizer > 75 || (balloonrandomizer > 50 && score>threshold )) {
 			balloon = spawnGreenBalloon(curPos);
    		} else {
