@@ -15,13 +15,15 @@ namespace Models
         public bool isVisible = false;
         public bool hasBecomeVisible = false;
         public Sprite curSprite;
+        public bool isGreen = false;
 
         protected Vector3 originalScale;
         protected Vector2 movement;
         protected float originalDeflateRate;
         protected GameObject Player;
+        protected float speedOffset;
 
-
+        
 
         public float getDeflateRate()
         {
@@ -74,6 +76,7 @@ namespace Models
         void Start()
         {
             floatingConst = 4;
+            speedOffset = 0;
             originalScale = this.transform.localScale;
             originalDeflateRate = this.deflateRate;
             Player = GameObject.Find("Player");
@@ -96,19 +99,14 @@ namespace Models
             this.deflate();
             speed += new Vector2(0, .01f);
             this.transform.Translate(Vector3.up * accel * Time.deltaTime);
-
-            if (!isVisible && this.transform.localScale.x < .5 && !hasBecomeVisible)
-            {
-                Invoke("Destroy", .1f);
-            }
-
-            //var dist = (Player.transform.position - Camera.main.transform.position).z;
             var dist = 0;
             var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, dist)).y;
-            if (this.transform.position.y > topBorder)
+            var bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
+            if (this.transform.position.y > topBorder || this.transform.position.y < bottomBorder - 10)
             {
                 Invoke("Destroy", .1f);
             }
+           
         }
 
         protected void FixedUpdate()
@@ -130,7 +128,7 @@ namespace Models
 
         public void OnBecameInvisible()
         {
-            Invoke("Destroy", 0f);
+            //Invoke("Destroy", 0f);
             isVisible = false;
         }
 
@@ -144,7 +142,7 @@ namespace Models
             }
             else
             {
-                Invoke("Destroy", 1f);
+                Invoke("Destroy", 0f);
             }
 
         }

@@ -18,7 +18,7 @@ public class altimeter : MonoBehaviour {
 		scorer = GameObject.Find("Scorer").GetComponent<scoremanager>();
 		if (Player) {
 			height = (int)(Player.transform.position.y - this.transform.position.y) + 100;
-			scorer.setScore (height);
+			scorer.setScore (height + 1);
 		}
 	}
 
