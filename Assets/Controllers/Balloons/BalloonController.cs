@@ -26,7 +26,6 @@ public class BalloonController : MonoBehaviour {
 	private scoretext scorer;
 	public int distance = 10;
 	private float bottomBorder;
-	public int threshold1 = 250;
 
 	void Start () {
         totalBalloons = 0;
@@ -95,6 +94,7 @@ public class BalloonController : MonoBehaviour {
 
         int score = scorer.getScore();
         GameObject balloon;
+	 	int threshold = 50;
 
         var balloonrandomizer = Random.Range(0, 100);
 
@@ -104,16 +104,12 @@ public class BalloonController : MonoBehaviour {
         0
         );
 
-        if (balloonrandomizer > 75 && score < threshold1)
-        {
-            balloon = spawnGreenBalloon(curPos);
-        }
+		Debug.Log ("*******");
+		Debug.Log (score);
 
-        if (balloonrandomizer >= 50 && score >= threshold1)
-        {
-            balloon = spawnGreenBalloon(curPos);
-        }
-        else {
+		if (balloonrandomizer > 75 || (balloonrandomizer > 50 && score>threshold )) {
+			balloon = spawnGreenBalloon(curPos);
+   		} else {
             balloon = spawnRedBalloon(curPos);
         }
         
@@ -173,11 +169,11 @@ public class BalloonController : MonoBehaviour {
         balloon = getNextBalloon();
         BalloonModel BalloonMod = balloon.GetComponent<BalloonModel>();
         BalloonMod.curSprite = greenSprite;
-        BalloonMod.speed = new Vector2(0, 4);
-        BalloonMod.direction = new Vector2(0, 1);
+		BalloonMod.speed = new Vector2(0, 2.5f);
+		BalloonMod.direction = new Vector2(0, 1);
         BalloonMod.deflateRate = .002f;
-        BalloonMod.accel = 8;
-        BalloonMod.floatingConst = 4;
+		BalloonMod.accel = 4.5f;
+		BalloonMod.floatingConst = 4;
         balloon.transform.parent = this.transform.parent;
         balloon.transform.position = curPos;
         SpawningBalloons.Add(balloon);
