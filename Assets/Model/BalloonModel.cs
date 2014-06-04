@@ -16,14 +16,14 @@ namespace Models
         public bool hasBecomeVisible = false;
         public Sprite curSprite;
         public bool isGreen = false;
+        public AudioClip pop;
 
         protected Vector3 originalScale;
         protected Vector2 movement;
         protected float originalDeflateRate;
         protected GameObject Player;
         protected float speedOffset;
-
-        
+        protected bool soundPlayed = false;
 
         public float getDeflateRate()
         {
@@ -102,11 +102,15 @@ namespace Models
             var dist = 0;
             var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, dist)).y;
             var bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
+            if (this.transform.localScale.y <= .2 && !soundPlayed)
+            {
+                audio.PlayOneShot(pop);
+                soundPlayed = true;
+            }
             if (this.transform.position.y > topBorder || this.transform.position.y < bottomBorder - 10)
             {
                 Invoke("Destroy", .1f);
-            }
-           
+            }           
         }
 
         protected void FixedUpdate()
@@ -117,6 +121,7 @@ namespace Models
 
         protected void Destroy()
         {
+            soundPlayed = false;
             this.transform.localScale = originalScale;
             this.deflateRate = originalDeflateRate;
             this.gameObject.SetActive(false);
@@ -169,7 +174,7 @@ namespace Models
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.tag == "platform" && !isVisible)
+            if (other.gameObject.tag == "platform" && !isVisible && !isGreen)
             {
                 Invoke("Destroy", 0f);                
             }
