@@ -112,6 +112,7 @@ namespace Models
         protected void FixedUpdate()
         {
             rigidbody2D.velocity = movement;
+
         }
 
         protected void Destroy()
@@ -132,6 +133,11 @@ namespace Models
             isVisible = false;
         }
 
+        public void OnBecameVisible()
+        {
+            isVisible = true;
+        }
+
         protected void deflate()
         {
             float xcheck = transform.localScale.x;
@@ -147,12 +153,25 @@ namespace Models
 
         }
 
-        public void onCollisionEnter2D(Collision2D point)
+        public void OnCollisionEnter2D(Collision2D other)
         {
-            var contact = point.contacts[0];
-            if (contact.point.y < this.transform.position.y)
+            var contact = other.contacts[0];
+            if (contact.point.y < this.transform.position.y - .5f && other.gameObject.tag == "Player")
             {
-                Invoke("Destroy", 1f);
+                Invoke("Destroy", 0f);
+            }
+            if (other.gameObject.tag == "platform" && !isVisible)
+            {
+                Invoke("Destroy", 0f);
+            }
+            
+        }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.tag == "platform" && !isVisible)
+            {
+                Invoke("Destroy", 0f);                
             }
         }
     }
