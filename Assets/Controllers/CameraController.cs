@@ -15,10 +15,11 @@ public class CameraController : MonoBehaviour {
 	private int loopCount;
 
 	void Start() {
-        if (isLooping){
 
-			Cam = GameObject.Find("Main Camera");
-			Player = GameObject.Find("player");
+        Cam = GameObject.Find("Main Camera");
+        Player = GameObject.Find("player");
+
+        if (isLooping){
 			this.loopCount = 0;
 
             backgroundPart = new List<Transform>();
@@ -34,6 +35,10 @@ public class CameraController : MonoBehaviour {
 
 
 	void Update () {
+
+        
+        Parralax();
+
 
 		if (isLooping) {
 
@@ -63,24 +68,29 @@ public class CameraController : MonoBehaviour {
 				}
 			}
 
-            if(isLinkedToCamera) {
-                Vector3 movement = new Vector3(speed.x * direction.x, speed.y * direction.y, 0);
-                Camera.main.transform.Translate(movement);
-            }
             
         }
 	}
+
+    void Parralax(){
+        Debug.Log(Player.rigidbody2D.velocity);
+        Vector3 movement = new Vector3(speed.x * direction.x, speed.y * -direction.y, 0);
+        if (Player.rigidbody2D.velocity.y < 0)
+        {
+            movement = new Vector3(speed.x * direction.x, speed.y * direction.y, 0);
+        }
+        if (Player.rigidbody2D.velocity.y >= 0)
+        {
+            //direction.y = -direction.y;
+        }
+        Debug.Log(direction.y);
+        movement *= Time.deltaTime;
+        transform.Translate(movement);
+
+        if (isLinkedToCamera)
+        {
+            Camera.main.transform.Translate(movement);
+        }
+    }
 }
-
-
-
-
-//Vector3 movement = new Vector3( speed.x * direction.x, speed.y * direction.y, 0);
-//movement *= Time.deltaTime;
-//transform.Translate(movement);
-
-//if(isLinkedToCamera) {
-//	//Camera.main.transform.Translate(movement);
-//}
-
 

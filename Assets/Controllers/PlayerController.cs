@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour {
 
 		//float playerSize = 0.5f;
         float playerSize = this.renderer.bounds.size.y;
-        Debug.Log(playerSize);
 		Vector3 position1 = transform.position;
 		Vector3 position2 = transform.position;
 		position1.x = position1.x - playerSize;
