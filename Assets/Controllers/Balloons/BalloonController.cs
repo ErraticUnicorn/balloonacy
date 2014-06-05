@@ -203,35 +203,3 @@ public class BalloonController : MonoBehaviour {
     }
 }
 
-/*   public Texture2D image = null;
-    private bool messageIsVisible;
-    private int messageTimer;
- * 
- * void Start() {
- *      messageTimer = 0;
- * }
- * 
- *void Update() {
-        messageTimer++;
-        if(messageTimer > 120) {
-            messageTimer = 0;
-            messageIsVisible = false;
-        }
-    }
- * 
- *     void OnCollisionEnter2D(Collision2D info) {
-        if (info.gameObject.tag == "Player") {
-            messageIsVisible = true;
-        }
-    }
-
-    void OnGUI() {
-        if (messageIsVisible) {
-            GUI.backgroundColor = new Color(0, 0, 0, 0);
-            GUI.Button(new Rect(Screen.width / 2, Screen.height / 2, 200, 200), image);
-        }
-    }
-
-
-*/
-

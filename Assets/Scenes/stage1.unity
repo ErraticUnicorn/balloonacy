@@ -136,7 +136,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .400000006
+  m_Radius: .600000024
   m_Center: {x: 0, y: 0}
 --- !u!50 &43772647
 Rigidbody2D:
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: {x: 2, y: 2}
   direction: {x: 0, y: -1}
-  isLinkedToCamera: 0
+  isLinkedToCamera: 1
   isLooping: 0
 --- !u!1 &507795901
 GameObject:
@@ -519,9 +519,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 638247144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3598cabc98ac1424fa766d0cd441fe91, type: 3}
+  m_Script: {fileID: 11500000, guid: a6264f19d60958b47a37e120171cfae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: 3dc5d34db0abd2d4a8f9158d3f17c9a1, type: 3}
 --- !u!1 &798042382
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +635,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .400000006
+  m_Radius: .600000024
   m_Center: {x: 0, y: 0}
 --- !u!50 &870541211
 Rigidbody2D:
@@ -791,7 +792,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: .5, y: .5}
   m_Center: {x: 0, y: 0}
 --- !u!212 &1051853273
 SpriteRenderer:
@@ -1089,7 +1090,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .400000006
+  m_Radius: .600000024
   m_Center: {x: 0, y: 0}
 --- !u!50 &1352476060
 Rigidbody2D:
@@ -1320,7 +1321,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Material: {fileID: 0}
-  m_FontSize: 25
+  m_FontSize: 30
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
@@ -1384,11 +1385,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6100000, guid: 9bb53139951f9584ca233480788ef759, type: 2}
       propertyPath: m_Size.x
-      value: 1
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 6100000, guid: 9bb53139951f9584ca233480788ef759, type: 2}
       propertyPath: m_Size.y
-      value: 1
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 9bb53139951f9584ca233480788ef759, type: 2}
@@ -1490,7 +1491,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .400000006
+  m_Radius: .600000024
   m_Center: {x: 0, y: 0}
 --- !u!50 &2047541543
 Rigidbody2D:

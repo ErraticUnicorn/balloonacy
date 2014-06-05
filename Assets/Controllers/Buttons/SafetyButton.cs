@@ -8,11 +8,11 @@ public class SafetyButton : MonoBehaviour {
     public int purpcount = 1;
 
     private GameObject Player;
-    private scoremanager scorer;
+    private AchievementController scorer;
 
     void Start() {
         Player = GameObject.Find("player");
-        scorer = GameObject.Find("Scorer").GetComponent<scoremanager>();
+        scorer = GameObject.Find("Scorer").GetComponent<AchievementController>();
     }
     //GUI specific actions
     void OnGUI() {

@@ -63,6 +63,11 @@ public class CameraController : MonoBehaviour {
 				}
 			}
 
+            if(isLinkedToCamera) {
+                Vector3 movement = new Vector3(speed.x * direction.x, speed.y * direction.y, 0);
+                Camera.main.transform.Translate(movement);
+            }
+            
         }
 	}
 }

@@ -5,7 +5,7 @@ using System.Collections;
 public class altimeter : MonoBehaviour {
     
     private GameObject Player;
-    scoremanager scorer;
+    AchievementController scorer;
     public int height;
 
 	// Use this for initialization
@@ -15,7 +15,7 @@ public class altimeter : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		Player = GameObject.Find("player");
-		scorer = GameObject.Find("Scorer").GetComponent<scoremanager>();
+		scorer = GameObject.Find("Scorer").GetComponent<AchievementController>();
 		if (Player) {
 			height = (int)(Player.transform.position.y - this.transform.position.y) + 100;
 			scorer.setScore (height + 1);

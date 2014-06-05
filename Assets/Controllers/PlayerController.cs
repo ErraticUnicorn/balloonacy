@@ -13,10 +13,13 @@ public class PlayerController : MonoBehaviour {
     private bool isGrounded = false;
 	private bool losing = false;
 	private GameObject cameraObject;
+    private AchievementController scorer;
    
 	void Start () {
         cameraObject = GameObject.Find("Main Camera");
+        scorer = GameObject.Find("Scorer").GetComponent<AchievementController>();
         DontDestroyOnLoad(this);
+
 	}
 
     void Awake() {
@@ -50,7 +53,9 @@ public class PlayerController : MonoBehaviour {
             check = false;
         }
 
-		float playerSize = 0.5f;
+		//float playerSize = 0.5f;
+        float playerSize = this.renderer.bounds.size.y;
+        Debug.Log(playerSize);
 		Vector3 position1 = transform.position;
 		Vector3 position2 = transform.position;
 		position1.x = position1.x - playerSize;
@@ -75,6 +80,7 @@ public class PlayerController : MonoBehaviour {
                     else
                     {
                         curballoon.setSpeed(new Vector2(0, 25f));
+                        scorer.setMessageVisible();
                     }
                     temp = true;
                 }
