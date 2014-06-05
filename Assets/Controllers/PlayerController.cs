@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public float movementSpeed = 5;
 	public Vector3 startpos = new Vector3(0, 0, 0);
 	public float newdeflaterate = .006f;
+    public AudioClip backgroundMusic;
 	private int jumpHeight = 500;
     private bool isGrounded = false;
 	private bool losing = false;
@@ -17,6 +18,13 @@ public class PlayerController : MonoBehaviour {
         cameraObject = GameObject.Find("Main Camera");
         DontDestroyOnLoad(this);
 	}
+
+    void Awake() {
+        if (!audio.isPlaying) {
+            audio.clip = backgroundMusic;
+            audio.Play();
+        }
+    }
 	
 	void Update () {
 		this.keyboardControls();

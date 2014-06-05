@@ -107,7 +107,7 @@ namespace Models
                 audio.PlayOneShot(pop);
                 soundPlayed = true;
             }
-            if (this.transform.position.y > topBorder || this.transform.position.y < bottomBorder - 10)
+            if (this.transform.position.y > topBorder || this.transform.position.y < bottomBorder - 15)
             {
                 Invoke("Destroy", .1f);
             }           
