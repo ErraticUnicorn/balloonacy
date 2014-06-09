@@ -67,12 +67,7 @@ public class CameraController : MonoBehaviour {
 			Vector3 lastPosition = secondChild.transform.position;
 			Vector3 lastSize = secondChild.renderer.bounds.max - secondChild.renderer.bounds.min ;
 
-            Debug.Log("CurrentFrame: " + currentFrame);
-            Debug.Log("ExpectedFrame: " + expectedFrame);
-
-
 			if (!firstChild.renderer.IsVisibleFrom(Camera.main) && isCameraRising()) {
-                Debug.Log("hi");
 				firstChild.position = new Vector3(firstChild.position.x, lastPosition.y + lastSize.y, firstChild.position.z);
 				backgroundPart.Remove(firstChild);
 				backgroundPart.Add(firstChild);
@@ -106,6 +101,7 @@ public class CameraController : MonoBehaviour {
 				}
 			}
         }
+
         lastCameraPos = Cam.transform.position;
        
 	}
