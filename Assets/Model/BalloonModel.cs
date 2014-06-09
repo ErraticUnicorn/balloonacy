@@ -25,6 +25,8 @@ namespace Models
         protected float speedOffset;
         protected bool soundPlayed = false;
 
+        private BalloonController spawner;
+
         public float getDeflateRate()
         {
             return deflateRate;
@@ -80,6 +82,7 @@ namespace Models
             originalScale = this.transform.localScale;
             originalDeflateRate = this.deflateRate;
             Player = GameObject.Find("Player");
+            spawner = GameObject.Find("spawner").GetComponent<BalloonController>();
             this.GetComponent<SpriteRenderer>().sprite = curSprite;
         }
 
@@ -107,7 +110,7 @@ namespace Models
                 audio.PlayOneShot(pop);
                 soundPlayed = true;
             }
-            if (this.transform.position.y > topBorder || this.transform.position.y < bottomBorder - 15)
+            if (this.transform.position.y > topBorder || (this.transform.position.y < bottomBorder - 20 && !hasBecomeVisible))
             {
                 Invoke("Destroy", .1f);
             }           
@@ -121,6 +124,7 @@ namespace Models
 
         protected void Destroy()
         {
+            spawner.totalBalloons--;
             soundPlayed = false;
             this.transform.localScale = originalScale;
             this.deflateRate = originalDeflateRate;
@@ -135,6 +139,7 @@ namespace Models
         public void OnBecameInvisible()
         {
             //Invoke("Destroy", 0f);
+
             isVisible = false;
         }
 
