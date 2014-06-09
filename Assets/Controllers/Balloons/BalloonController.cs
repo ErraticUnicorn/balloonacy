@@ -28,7 +28,7 @@ public class BalloonController : MonoBehaviour {
 	private float bottomBorder;
 
 	void Start () {
-        totalBalloons = 0;
+        totalBalloons = 4;
         timer = 0;
         camera = GameObject.Find("Main Camera");
         player = GameObject.Find("player");
@@ -197,8 +197,8 @@ public class BalloonController : MonoBehaviour {
         balloon.transform.parent = this.transform.parent;
         balloon.transform.position = curPos;
         SpawningBalloons.Add(balloon);
-        totalBalloons++;
         balloon.SetActive(true);
+        totalBalloons++;
         return balloon;
     }
 }
