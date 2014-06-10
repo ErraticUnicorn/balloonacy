@@ -19,10 +19,7 @@ public class scoretext : MonoBehaviour {
 	
 	}
 
-    public int getScore()
-    {
+    public int getScore() {
         return score;
     }
-
-
 }

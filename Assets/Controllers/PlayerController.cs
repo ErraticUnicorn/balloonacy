@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void Update () {
 		this.keyboardControls();
-		//this.iOSControls();
+		this.iOSControls();
 		this.mouseControls();
 		this.checkForDidLose();
 	
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
 		Vector3 position1 = transform.position;
 		Vector3 position2 = transform.position;
 		position1.x = position1.x - playerSize;
-		position1.y = position1.y ;
+		position1.y = position1.y;
 		position2.x = position2.x + playerSize;
 		position2.y = position2.y - 2*playerSize;
 
@@ -72,12 +72,10 @@ public class PlayerController : MonoBehaviour {
                 if (hit.tag == "platform") {
                     var curballoon = hit.gameObject.GetComponent<BalloonModel>();
                     curballoon.setDeflateRate(newdeflaterate);
-                    if (!curballoon.isGreen)
-                    {
+                    if (!curballoon.isGreen) {
                         curballoon.setSpeed(new Vector2(0, 20f));
                     }
-                    else
-                    {
+                    else {
                         curballoon.setSpeed(new Vector2(0, 25f));
                         scorer.setMessageVisible();
                     }
@@ -108,7 +106,7 @@ public class PlayerController : MonoBehaviour {
         dir.x = Input.acceleration.x;
         //dir.y = -Input.acceleration.y;
         
-		if (dir.sqrMagnitude > 1){
+		if (dir.sqrMagnitude > 1) {
             dir.Normalize();
         }
 
@@ -116,7 +114,7 @@ public class PlayerController : MonoBehaviour {
         transform.position += dir * movementSpeed;
     }
 	
-	void keyboardControls(){
+	void keyboardControls() {
 		if (Input.GetButtonDown("Jump")){playerJump();}
 		if (Input.GetKey("left")){xAxisMvmtLeft();}
 		if (Input.GetKey("right")){xAxisMvmtRight();}
@@ -144,7 +142,5 @@ public class PlayerController : MonoBehaviour {
 		if (transform.position.y <= cameraObject.transform.position.y - 10){
             Application.LoadLevel("losescreen");
         }
-
     }
-
 }

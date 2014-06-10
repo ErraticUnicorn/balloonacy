@@ -7,7 +7,7 @@ using Models;
 
 public class BalloonController : MonoBehaviour {
 
-    public GameObject balloonPrefab;
+    public GameObject balloon;
     public Sprite redSprite;
     public Sprite greenSprite;
 
@@ -40,7 +40,7 @@ public class BalloonController : MonoBehaviour {
 	void Awake () {
 		balloons = new GameObject[balloonPool];
 		for(int i = 0; i < balloons.Length; i++) {
-			balloons[i] = Instantiate(balloonPrefab) as GameObject;
+			balloons[i] = Instantiate(balloon) as GameObject;
 			balloons[i].SetActive(false);
 			balloons[i].transform.parent = transform.parent;
 		}
@@ -90,13 +90,12 @@ public class BalloonController : MonoBehaviour {
         timer++;
     }
 
-    void spawnBalloon(Vector2 coordinate){
+    void spawnBalloon(Vector2 coordinate) {
 
         int score = scorer.getScore();
         GameObject balloon;
         int greenThreshold = 75;
-        if (score >= 250)
-        {
+        if (score >= 250) {
             greenThreshold = 50;
         }
 
@@ -123,8 +122,7 @@ public class BalloonController : MonoBehaviour {
     /// </summary>
     /// <returns> List of 4 coordinates representing the next 4 balloon locations</returns>
 
-    public List<Vector2> getBalloonPoints()
-    {
+    public List<Vector2> getBalloonPoints() {
         List<Vector2> BalloonPoints = new List<Vector2>();
         List<Vector2> Sections = new List<Vector2>();
 
@@ -133,14 +131,12 @@ public class BalloonController : MonoBehaviour {
         int spawnheight = 4;
         int offset = -10;
         float curX = 0, curY = 0;
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             int section = spawnwidth / 4;
             Sections.Add(new Vector2(section + offset, spawnheight));
             offset += 5;
         }
-        for (int i = 0; i < Sections.Capacity; i++)
-        {
+        for (int i = 0; i < Sections.Capacity; i++) {
             Vector2 curRange = Sections[i];
 
             curX = Random.Range(curRange.x - 5, curRange.x);
@@ -151,20 +147,6 @@ public class BalloonController : MonoBehaviour {
         return BalloonPoints;
     }
 
-    public void checkIfBalloonsAreVisible()
-    {
-        foreach (GameObject b in SpawningBalloons)
-        {
-            if (b.transform.position.y >= bottomBorder - 3)
-            {
-                SpawningBalloons.Remove(b);
-            }
-            if (!b.activeInHierarchy || b == null)
-            {
-                SpawningBalloons.Remove(b);
-            }
-        }
-    }
     public GameObject spawnGreenBalloon(Vector3 curPos) {
         GameObject balloon;
         balloon = getNextBalloon();
