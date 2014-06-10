@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad36a4e3ad38482480d470a144c2d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloon: {fileID: 0}
+  balloon: {fileID: 100000, guid: d66533b505ccad149a6a02b38abb1a2d, type: 2}
   redSprite: {fileID: 21300000, guid: 797471d7214fc564fa54533c6fb28d3c, type: 3}
   greenSprite: {fileID: 21300000, guid: e82bf6ae5435c3149813d527f24bfa29, type: 3}
   balloonPool: 50
@@ -649,7 +649,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 657730496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.58973396, y: 29.590416, z: 10}
+  m_LocalPosition: {x: -1.589733, y: 29.4496269, z: 10}
   m_LocalScale: {x: 1.86267102, y: 1.48035002, z: 1}
   m_Children: []
   m_Father: {fileID: 1237381238}
