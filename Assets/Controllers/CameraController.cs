@@ -4,10 +4,13 @@ using System.Linq;
 
 //This class handles parallax
 public class CameraController : MonoBehaviour {
+
+
     public Vector2 speed = new Vector2(2, 2);
 	public Vector2 direction = new Vector2(0, -1);
 	public bool isLinkedToCamera = false;
 	public bool isLooping = false;
+    public bool isParallaxing = false;
     public List<Sprite> backgrounds;
     private int expectedFrame = 0;
     private int currentFrame = 0;
@@ -49,7 +52,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void Update () {
-        Parralax();
+        Parallax();
         looping();
 	}
 
@@ -115,13 +118,18 @@ public class CameraController : MonoBehaviour {
         }
     }
 
-    void Parralax() {
+    void Parallax() {
         Vector3 movement = new Vector3(speed.x * direction.x, speed.y * -direction.y, 0);
         if (Player.rigidbody2D.velocity.y < 0) {
             movement = new Vector3(speed.x * direction.x, speed.y * direction.y, 0);
         }
         if (Player.rigidbody2D.velocity.y >= 0) {
             //direction.y = -direction.y;
+        }
+
+        if (isParallaxing)
+        {
+            movement += new Vector3(movement.x, Player.rigidbody2D.velocity.y, 0);
         }
         movement *= Time.deltaTime;
         transform.Translate(movement);

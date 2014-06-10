@@ -476,8 +476,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: {x: 1.5, y: 1.5}
   direction: {x: 0, y: 1}
-  isLinkedToCamera: 1
+  isLinkedToCamera: 0
   isLooping: 0
+  isParallaxing: 0
   backgrounds: []
 --- !u!1 &475918086
 GameObject:
@@ -527,6 +528,7 @@ MonoBehaviour:
   direction: {x: 0, y: -1}
   isLinkedToCamera: 1
   isLooping: 0
+  isParallaxing: 0
   backgrounds: []
 --- !u!1 &507795901
 GameObject:
@@ -1231,6 +1233,7 @@ MonoBehaviour:
   direction: {x: 0, y: -1}
   isLinkedToCamera: 0
   isLooping: 1
+  isParallaxing: 0
   backgrounds: []
 --- !u!1 &1352476056
 GameObject:
@@ -1591,10 +1594,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44952cb12625a494b91e2692ac2545bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: .5, y: .25}
-  direction: {x: 0, y: -1}
+  speed: {x: .5, y: 1.5}
+  direction: {x: 0, y: 1}
   isLinkedToCamera: 0
   isLooping: 0
+  isParallaxing: 0
   backgrounds: []
 --- !u!1 &2047541540
 GameObject:
