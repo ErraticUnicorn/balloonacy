@@ -11,9 +11,12 @@ GameObject:
   - 212: {fileID: 21200000}
   - 58: {fileID: 5800000}
   - 50: {fileID: 5000000}
-  - 114: {fileID: 11400000}
   - 58: {fileID: 5800002}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: balloon
   m_TagString: platform
@@ -135,18 +138,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c55afcddb68b4335b90d91497d22d40, type: 3}
+  m_Script: {fileID: 11500000, guid: a8f562e2d83b56e44b2ec80838d4aa06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
-  direction: {x: 0, y: 0}
-  deflateRate: 0
-  accel: 0
-  floatingConst: 4
   isVisible: 0
   hasBecomeVisible: 0
   curSprite: {fileID: 0}
   isGreen: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20829c66b9d5db40bd33450c375f1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deflateRate: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa1bc554ca152649abf8814f7f97727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
+  floatingConst: 4
+  accel: 0
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef38b35fc813e84f8345be7fb4668d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   pop: {fileID: 8300000, guid: 86e10e00cedbe1a4ca9463f7d5bdf673, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:

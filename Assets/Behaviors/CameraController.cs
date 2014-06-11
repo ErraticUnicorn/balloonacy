@@ -87,7 +87,6 @@ public class CameraController : MonoBehaviour {
             if (!secondChild.renderer.IsVisibleFrom(Camera.main) && !isCameraRising()) {
                 this.loopCount--;
                 this.expectedFrame--;
-                Debug.Log("ExpectedFrame: " + expectedFrame);
                 if (expectedFrame == currentFrame) {
                     expectedFrame--;
                 }

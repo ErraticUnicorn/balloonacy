@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Models;
 
-public class SafetyBalloon : BalloonModel {
+public class SafetyBalloon : MonoBehaviour {
   
     public int spawnconst = 11;
 
@@ -12,11 +11,13 @@ public class SafetyBalloon : BalloonModel {
 
 	// Use this for initialization
 	void Start () {
-        speed = new Vector2(0, .5f);
-        direction = new Vector2(0, 1);
-        deflateRate = .003f;
-        accel = 2f;
-        floatingConst = 4;
+        BalloonAppearance BalloonMod = this.GetComponent<BalloonAppearance>();
+        Float BalloonFloat = this.GetComponent<Float>();
+        Deflate BalloonDeflate = this.GetComponent<Deflate>();
+        BalloonFloat.speed = new Vector2(0, .5f);
+        BalloonFloat.direction = new Vector2(0, 1);
+        BalloonFloat.accel = 2f;
+        BalloonDeflate.deflateRate = .003f;
         camera = GameObject.Find("Main Camera");
         player = GameObject.Find("player");
         Vector3 curCamPos = camera.transform.position;
