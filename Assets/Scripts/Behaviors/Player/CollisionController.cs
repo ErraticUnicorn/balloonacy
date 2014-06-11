@@ -11,7 +11,7 @@ public class CollisionController : MonoBehaviour {
     void Start()
     {
         cam = GameObject.Find("Main Camera");
-
+        scorer = GameObject.Find("Scorer").GetComponent<AchievementController>();
         DontDestroyOnLoad(this);
 
     }
@@ -28,7 +28,7 @@ public class CollisionController : MonoBehaviour {
         checkIfOnBalloon();
     }
 
-
+    Notification collision = new Notification(NotificationType.OnBalloonPlayerCollision, "Balloon Collided!");
     void checkIfOnBalloon()
     {
         float playerSize = this.renderer.bounds.size.y;
@@ -50,10 +50,10 @@ public class CollisionController : MonoBehaviour {
             {
                 if (hit.tag == "platform")
                 {
+                    NotificationCenter.defaultCenter.postNotification(collision);
                     Float balloonFloat = hit.gameObject.GetComponent<Float>();
                     Deflate balloonDeflate = hit.gameObject.GetComponent<Deflate>();
                     BalloonAppearance balloonApp = hit.gameObject.GetComponent<BalloonAppearance>();
-                    balloonDeflate.setDeflateRate(newDeflateRate);
                     if (!balloonApp.isGreen)
                     {
                         balloonFloat.setSpeed(new Vector2(0, 20f));

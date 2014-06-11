@@ -5,6 +5,8 @@ public class Deflate : MonoBehaviour {
 
     public float deflateRate;
     protected float originalDeflateRate;
+    protected float collisionDeflateRate = .006f;
+    public bool playerCheck = false;
 
     public float getDeflateRate() {
         return deflateRate;
@@ -16,6 +18,7 @@ public class Deflate : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         originalDeflateRate = this.deflateRate;
+        NotificationCenter.defaultCenter.addListener(playerCollision, NotificationType.OnBalloonPlayerCollision);
 	}
 	
 	// Update is called once per frame
@@ -36,6 +39,13 @@ public class Deflate : MonoBehaviour {
         if(xcheck <= 0){
             this.GetComponent<BalloonAppearance>().Destroy();
             this.deflateRate = originalDeflateRate;
+        }
+    }
+
+    void playerCollision(Notification Note){
+        if (playerCheck)
+        {
+            this.deflateRate = collisionDeflateRate;
         }
     }
 }

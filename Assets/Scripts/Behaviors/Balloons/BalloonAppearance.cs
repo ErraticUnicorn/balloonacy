@@ -61,6 +61,10 @@ public class BalloonAppearance : MonoBehaviour {
         if (other.gameObject.tag == "platform" && !isVisible) {
             Invoke("Destroy", 0f);
         }
+        if (other.gameObject.tag == "Player")
+        {
+            this.gameObject.GetComponent<Deflate>().playerCheck = true;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other) {
