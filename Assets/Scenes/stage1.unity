@@ -541,6 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflateRate: 9.99999975e-05
+  playerCheck: 0
 --- !u!114 &577267069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,6 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflateRate: 9.99999975e-05
+  playerCheck: 0
 --- !u!114 &918775558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1204,6 +1206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflateRate: 9.99999975e-05
+  playerCheck: 0
 --- !u!114 &1050175893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,6 +1775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflateRate: 9.99999975e-05
+  playerCheck: 0
 --- !u!114 &1592974550
 MonoBehaviour:
   m_ObjectHideFlags: 0

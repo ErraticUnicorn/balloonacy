@@ -13,6 +13,7 @@ public class AchievementController : MonoBehaviour {
     void Start() {
         DontDestroyOnLoad(this);
         messageTimer = 0;
+        NotificationCenter.defaultCenter.addListener(onReceiveMessageSetMessageVisible, NotificationType.OnAchievableEvent);
     }
 
     void Update() {
@@ -56,6 +57,11 @@ public class AchievementController : MonoBehaviour {
 
     public void setMessageInvisible() {
         messageIsVisible = false;
+    }
+
+    public void onReceiveMessageSetMessageVisible(Notification note)
+    {
+        setMessageVisible();
     }
 }
 

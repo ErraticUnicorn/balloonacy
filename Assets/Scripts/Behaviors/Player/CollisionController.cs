@@ -6,12 +6,10 @@ public class CollisionController : MonoBehaviour {
     public float newDeflateRate = .006f;
     private bool lose = false;
     private GameObject cam;
-    private AchievementController scorer;
 
     void Start()
     {
         cam = GameObject.Find("Main Camera");
-        scorer = GameObject.Find("Scorer").GetComponent<AchievementController>();
         DontDestroyOnLoad(this);
 
     }
@@ -28,7 +26,6 @@ public class CollisionController : MonoBehaviour {
         checkIfOnBalloon();
     }
 
-    Notification collision = new Notification(NotificationType.OnBalloonPlayerCollision, "Balloon Collided!");
     void checkIfOnBalloon()
     {
         float playerSize = this.renderer.bounds.size.y;
@@ -40,7 +37,8 @@ public class CollisionController : MonoBehaviour {
         position2.y = position2.y - 2 * playerSize;
 
         Collider2D[] hits = Physics2D.OverlapAreaAll(new Vector2(position1.x, position1.y), new Vector2(position2.x, position2.y));
-
+        Notification collision = new Notification(NotificationType.OnBalloonPlayerCollision, "Balloon Collided!");
+     
         int i = 0;
         bool temp = false;
         while (i < hits.Length)
@@ -51,18 +49,6 @@ public class CollisionController : MonoBehaviour {
                 if (hit.tag == "platform")
                 {
                     NotificationCenter.defaultCenter.postNotification(collision);
-                    Float balloonFloat = hit.gameObject.GetComponent<Float>();
-                    Deflate balloonDeflate = hit.gameObject.GetComponent<Deflate>();
-                    BalloonAppearance balloonApp = hit.gameObject.GetComponent<BalloonAppearance>();
-                    if (!balloonApp.isGreen)
-                    {
-                        balloonFloat.setSpeed(new Vector2(0, 20f));
-                    }
-                    else
-                    {
-                        balloonFloat.setSpeed(new Vector2(0, 25f));
-                        scorer.setMessageVisible();
-                    }
                     temp = true;
                 }
             }
@@ -94,4 +80,5 @@ public class CollisionController : MonoBehaviour {
             Application.LoadLevel("losescreen");
         }
     }
+
 }

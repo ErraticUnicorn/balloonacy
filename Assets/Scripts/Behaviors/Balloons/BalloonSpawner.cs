@@ -32,6 +32,7 @@ public class BalloonSpawner : MonoBehaviour
         player = GameObject.Find("player");
         scorer = GameObject.Find("Score").GetComponent<scoretext>();
         SpawningBalloons = new List<GameObject>();
+        NotificationCenter.defaultCenter.addListener(onReceiveNotificationBalloonPop, NotificationType.BalloonPop);
 
     }
 
@@ -183,5 +184,12 @@ public class BalloonSpawner : MonoBehaviour
         totalBalloons++;
         return balloon;
     }
+
+    void onReceiveNotificationBalloonPop(Notification note)
+    {
+        totalBalloons--;
+    }
+
+    
 }
 

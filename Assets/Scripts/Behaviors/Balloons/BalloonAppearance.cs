@@ -9,9 +9,6 @@ public class BalloonAppearance : MonoBehaviour {
     public bool isGreen = false;
 
     protected Vector3 originalScale;
-    protected GameObject Player;
-
-    private BalloonSpawner spawner;
 
 
     public void setSprite(Sprite image) {
@@ -22,8 +19,6 @@ public class BalloonAppearance : MonoBehaviour {
 	void Start () {
         originalScale = this.transform.localScale;
         this.GetComponent<SpriteRenderer>().sprite = curSprite;
-        Player = GameObject.Find("Player");
-        spawner = GameObject.Find("spawner").GetComponent<BalloonSpawner>();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +28,8 @@ public class BalloonAppearance : MonoBehaviour {
 
     public void Destroy()
     {
-        spawner.totalBalloons--;
+        Notification balloonPop = new Notification(NotificationType.BalloonPop, "Balloon Popped!");
+        NotificationCenter.defaultCenter.postNotification(balloonPop);
         this.GetComponent<Audio>().Reset();
         this.transform.localScale = originalScale;
         this.gameObject.SetActive(false);
