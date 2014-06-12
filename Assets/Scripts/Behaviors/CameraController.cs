@@ -67,7 +67,8 @@ public class CameraController : MonoBehaviour {
             Transform secondChild = backgroundPart.LastOrDefault();
             Vector3 lastPosition = secondChild.transform.position;
             Vector3 lastSize = secondChild.renderer.bounds.max - secondChild.renderer.bounds.min;
-
+            
+            //needs work -- cleaner code
             if (!firstChild.renderer.IsVisibleFrom(Camera.main) && isCameraRising()) {
                 firstChild.position = new Vector3(firstChild.position.x, lastPosition.y + lastSize.y, firstChild.position.z);
                 backgroundPart.Remove(firstChild);

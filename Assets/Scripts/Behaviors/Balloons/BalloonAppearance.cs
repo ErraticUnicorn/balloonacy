@@ -26,12 +26,12 @@ public class BalloonAppearance : MonoBehaviour {
 
 	}
 
-    public void Destroy()
-    {
+    public void Destroy() {
         Notification balloonPop = new Notification(NotificationType.BalloonPop, "Balloon Popped!");
         NotificationCenter.defaultCenter.postNotification(balloonPop);
         this.GetComponent<Audio>().Reset();
         this.transform.localScale = originalScale;
+        this.GetComponent<Deflate>().Reset();
         this.gameObject.SetActive(false);
     }
 
@@ -57,8 +57,7 @@ public class BalloonAppearance : MonoBehaviour {
         if (other.gameObject.tag == "platform" && !isVisible) {
             Invoke("Destroy", 0f);
         }
-        if (other.gameObject.tag == "Player")
-        {
+        if (other.gameObject.tag == "Player") {
             this.gameObject.GetComponent<Deflate>().playerCheck = true;
         }
     }

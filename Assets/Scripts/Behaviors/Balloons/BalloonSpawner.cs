@@ -4,8 +4,7 @@ using System.Collections;
 //arraylist & lists
 using System.Collections.Generic;
 
-public class BalloonSpawner : MonoBehaviour
-{
+public class BalloonSpawner : MonoBehaviour {
 
     public GameObject balloon;
 
@@ -24,8 +23,7 @@ public class BalloonSpawner : MonoBehaviour
     public int distance = 10;
     private float bottomBorder;
 
-    void Start()
-    {
+    void Start() {
         totalBalloons = 4;
         timer = 0;
         camera = GameObject.Find("Main Camera");
@@ -36,29 +34,24 @@ public class BalloonSpawner : MonoBehaviour
 
     }
 
-    void Awake()
-    {
+    void Awake() {
         balloons = new GameObject[balloonPool];
-        for (int i = 0; i < balloons.Length; i++)
-        {
+        for (int i = 0; i < balloons.Length; i++) {
             balloons[i] = Instantiate(balloon) as GameObject;
             balloons[i].SetActive(false);
             balloons[i].transform.parent = transform.parent;
         }
     }
 
-    public GameObject getNextBalloon()
-    {
+    public GameObject getNextBalloon() {
         lastBalloon++;
-        if (lastBalloon > balloonPool - 1)
-        {
+        if (lastBalloon > balloonPool - 1) {
             lastBalloon = 0;
         }
         return balloons[lastBalloon];
     }
 
-    void Update()
-    {
+    void Update() {
 
         SpawnBalloons();
         var dist = (player.transform.position - Camera.main.transform.position).z;
@@ -68,43 +61,35 @@ public class BalloonSpawner : MonoBehaviour
 
     bool reverse = true;
 
-    void SpawnBalloons()
-    {
+    void SpawnBalloons() {
 
-        if (curBalloon >= 4)
-        {
+        if (curBalloon >= 4) {
             curBalloon = 0;
             reverse = !reverse;
         }
-        if (curBalloon == 0)
-        {
+        if (curBalloon == 0) {
             BalloonCoord = getBalloonPoints();
         }
-        if (timer == spawntime && reverse == true)
-        {
+        if (timer == spawntime && reverse == true) {
             spawnBalloon(BalloonCoord[curBalloon]);
             curBalloon++;
         }
-        if (timer == spawntime && reverse == false)
-        {
+        if (timer == spawntime && reverse == false) {
             spawnBalloon(BalloonCoord[BalloonCoord.Capacity - curBalloon - 1]);
             curBalloon++;
         }
-        if (timer >= spawntime)
-        {
+        if (timer >= spawntime) {
             timer = 0;
         }
         timer++;
     }
 
-    void spawnBalloon(Vector2 coordinate)
-    {
+    void spawnBalloon(Vector2 coordinate) {
 
         int score = scorer.getScore();
         GameObject balloon;
         int greenThreshold = 75;
-        if (score >= 250)
-        {
+        if (score >= 250) {
             greenThreshold = 50;
         }
 
@@ -115,12 +100,10 @@ public class BalloonSpawner : MonoBehaviour
         this.transform.position.y + coordinate.y - 5,
         0
         );
-        if (balloonrandomizer > greenThreshold)
-        {
+        if (balloonrandomizer > greenThreshold) {
             balloon = spawnGreenBalloon(curPos);
         }
-        else
-        {
+        else {
             balloon = spawnRedBalloon(curPos);
         }
 
@@ -133,8 +116,7 @@ public class BalloonSpawner : MonoBehaviour
     /// </summary>
     /// <returns> List of 4 coordinates representing the next 4 balloon locations</returns>
 
-    public List<Vector2> getBalloonPoints()
-    {
+    public List<Vector2> getBalloonPoints() {
         List<Vector2> BalloonPoints = new List<Vector2>();
         List<Vector2> Sections = new List<Vector2>();
 
@@ -143,14 +125,12 @@ public class BalloonSpawner : MonoBehaviour
         int spawnheight = 4;
         int offset = -10;
         float curX = 0, curY = 0;
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             int section = spawnwidth / 4;
             Sections.Add(new Vector2(section + offset, spawnheight));
             offset += 5;
         }
-        for (int i = 0; i < Sections.Capacity; i++)
-        {
+        for (int i = 0; i < Sections.Capacity; i++) {
             Vector2 curRange = Sections[i];
 
             curX = Random.Range(curRange.x - 5, curRange.x);
@@ -161,8 +141,7 @@ public class BalloonSpawner : MonoBehaviour
         return BalloonPoints;
     }
 
-    public GameObject spawnGreenBalloon(Vector3 curPos)
-    {
+    public GameObject spawnGreenBalloon(Vector3 curPos) {
         GameObject balloon;
         balloon = getNextBalloon();
         balloon = this.GetComponent<GreenBalloon>().greenBalloonPresets(balloon);
@@ -173,8 +152,7 @@ public class BalloonSpawner : MonoBehaviour
         return balloon;
     }
 
-    public GameObject spawnRedBalloon(Vector3 curPos)
-    {
+    public GameObject spawnRedBalloon(Vector3 curPos) {
         GameObject balloon;
         balloon = getNextBalloon();
         balloon = this.GetComponent<RedBalloon>().redBalloonPresets(balloon);
@@ -185,8 +163,7 @@ public class BalloonSpawner : MonoBehaviour
         return balloon;
     }
 
-    void onReceiveNotificationBalloonPop(Notification note)
-    {
+    void onReceiveNotificationBalloonPop(Notification note) {
         totalBalloons--;
     }
 

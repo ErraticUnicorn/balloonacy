@@ -8,30 +8,24 @@ public class Jump : MonoBehaviour {
     private int playerJumpHeight = 500;
 
 
-    public bool isGrounded()
-    {
+    public bool isGrounded() {
         return playerGrounded;
     }
 
-    public void setGrounded(bool ground)
-    {
+    public void setGrounded(bool ground) {
         playerGrounded = ground;
     }
-    public void playerJump()
-    {
-        if (playerGrounded)
-        {
+    public void playerJump() {
+        if (playerGrounded) {
             rigidbody2D.AddForce(new Vector2(0, playerJumpHeight));
         }
     }
 
-    public void xAxisMvmtRight()
-    {
+    public void xAxisMvmtRight() {
         transform.position += Vector3.right * playerSpeed * Time.deltaTime;
     }
 
-    public void xAxisMvmtLeft()
-    {
+    public void xAxisMvmtLeft() {
         transform.position -= Vector3.right * playerSpeed * Time.deltaTime;
     }
 }

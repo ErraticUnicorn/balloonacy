@@ -10,34 +10,28 @@ public class Float : MonoBehaviour {
     public float accel;
 
 
-    public Vector2 getSpeed()
-    {
+    public Vector2 getSpeed() {
         return speed;
     }
 
-    public float getAcceleration()
-    {
+    public float getAcceleration() {
         return accel;
     }
 
-    public Vector2 getDirection()
-    {
+    public Vector2 getDirection() {
         return direction;
     }
 
-    public void setSpeed(Vector2 newSpeed)
-    {
+    public void setSpeed(Vector2 newSpeed) {
         this.speed = newSpeed;
     }
 
-    public void setAcceleration(float accel)
-    {
+    public void setAcceleration(float accel) {
         Debug.Log(this.accel);
         this.accel = accel;
     }
 
-    public void setDirection(Vector2 newDirection)
-    {
+    public void setDirection(Vector2 newDirection) {
         this.direction = newDirection;
     }
 

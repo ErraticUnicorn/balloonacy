@@ -10,18 +10,15 @@ public class Controls : MonoBehaviour {
         this.mouseControls();
 	}
 
-    void mouseControls()
-    {
+    void mouseControls() {
         var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Input.GetMouseButtonDown(0) && this.GetComponent<Jump>().isGrounded()) { this.GetComponent<Jump>().playerJump(); }
         if (screenPoint.origin.x < transform.position.x) { this.GetComponent<Jump>().xAxisMvmtLeft(); }
         if (screenPoint.origin.x > transform.position.x) { this.GetComponent<Jump>().xAxisMvmtRight(); }
     }
 
-    void iOSControls()
-    {
-        foreach (Touch touch in Input.touches)
-        {
+    void iOSControls() {
+        foreach (Touch touch in Input.touches) {
             var screenPoint = Camera.main.ScreenPointToRay(touch.position);
             if (touch.phase == TouchPhase.Began) { this.GetComponent<Jump>().playerJump(); }
             if (screenPoint.origin.x < transform.position.x) { this.GetComponent<Jump>().xAxisMvmtLeft(); }
@@ -32,8 +29,7 @@ public class Controls : MonoBehaviour {
         dir.x = Input.acceleration.x;
         //dir.y = -Input.acceleration.y;
 
-        if (dir.sqrMagnitude > 1)
-        {
+        if (dir.sqrMagnitude > 1) {
             dir.Normalize();
         }
 
@@ -41,8 +37,7 @@ public class Controls : MonoBehaviour {
         transform.position += dir * this.GetComponent<Jump>().playerSpeed;
     }
 
-    void keyboardControls()
-    {
+    void keyboardControls() {
         if (Input.GetButtonDown("Jump")) { this.GetComponent<Jump>().playerJump(); }
         if (Input.GetKey("left")) { this.GetComponent<Jump>().xAxisMvmtLeft(); }
         if (Input.GetKey("right")) { this.GetComponent<Jump>().xAxisMvmtRight(); }

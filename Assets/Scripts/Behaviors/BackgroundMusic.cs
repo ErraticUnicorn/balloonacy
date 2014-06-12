@@ -5,10 +5,8 @@ public class BackgroundMusic : MonoBehaviour {
     
     public AudioClip backgroundTunes;
 
-    void Awake()
-    {
-        if (!audio.isPlaying)
-        {
+    void Awake() {
+        if (!audio.isPlaying) {
             audio.clip = backgroundTunes;
             audio.Play();
         }
