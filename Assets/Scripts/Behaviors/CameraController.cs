@@ -62,47 +62,58 @@ public class CameraController : MonoBehaviour {
                 Cam.transform.position = new Vector3(Cam.transform.position.x, Player.transform.position.y, Cam.transform.position.z);
             }
 
+            //needs work -- cleaner code
+
             backgroundPart = backgroundPart.OrderBy(t => t.position.y).ToList();
             Transform firstChild = backgroundPart.FirstOrDefault();
             Transform secondChild = backgroundPart.LastOrDefault();
             Vector3 lastPosition = secondChild.transform.position;
             Vector3 lastSize = secondChild.renderer.bounds.max - secondChild.renderer.bounds.min;
-            
-            //needs work -- cleaner code
-            if (!firstChild.renderer.IsVisibleFrom(Camera.main) && isCameraRising()) {
-                firstChild.position = new Vector3(firstChild.position.x, lastPosition.y + lastSize.y, firstChild.position.z);
-                backgroundPart.Remove(firstChild);
-                backgroundPart.Add(firstChild);
-                //add a trigger?
-                this.loopCount++;
-                this.expectedFrame++;
-                if (expectedFrame == currentFrame)
-                {
-                    expectedFrame++;
-                }
-                currentFrame = expectedFrame - 1;
-                backgroundCheck();
-                firstChild.GetComponent<SpriteRenderer>().sprite = backgrounds[expectedFrame];
-            }
 
-            if (!secondChild.renderer.IsVisibleFrom(Camera.main) && !isCameraRising()) {
-                this.loopCount--;
-                this.expectedFrame--;
-                if (expectedFrame == currentFrame) {
-                    expectedFrame--;
-                }
-                currentFrame = expectedFrame + 1;
-                backgroundCheck();
-                secondChild.GetComponent<SpriteRenderer>().sprite = backgrounds[expectedFrame];
-                if (this.loopCount >= -1) {
-                    secondChild.position = new Vector3(secondChild.position.x, firstChild.position.y - lastSize.y, secondChild.position.z);
-                    backgroundPart.Remove(secondChild);
-                    backgroundPart.Add(secondChild);
-                }
-            }
+            checkIfFirstSceneIsOutOfBounds(firstChild, lastPosition, lastSize);
+            checkIfSecondSceneIsOutOfBounds(secondChild, firstChild, lastPosition, lastSize);
+
         }
 
         lastCameraPos = Cam.transform.position;
+    }
+
+    void checkIfFirstSceneIsOutOfBounds(Transform firstChild, Vector3 lastPosition, Vector3 lastSize) {
+        if (!firstChild.renderer.IsVisibleFrom(Camera.main) && isCameraRising()) {
+            firstChild.position = new Vector3(firstChild.position.x, lastPosition.y + lastSize.y, firstChild.position.z);
+            backgroundPart.Remove(firstChild);
+            backgroundPart.Add(firstChild);
+            //add a trigger?
+            this.loopCount++;
+            this.expectedFrame++;
+            if (expectedFrame == currentFrame) {
+                expectedFrame++;
+            }
+            currentFrame = expectedFrame - 1;
+            backgroundCheck();
+            firstChild.GetComponent<SpriteRenderer>().sprite = backgrounds[expectedFrame];
+        }
+    }
+
+    void checkIfSecondSceneIsOutOfBounds(Transform secondChild, Transform firstChild, Vector3 lastPosition, Vector3 lastSize) {
+        if (!secondChild.renderer.IsVisibleFrom(Camera.main) && !isCameraRising())
+        {
+            this.loopCount--;
+            this.expectedFrame--;
+            if (expectedFrame == currentFrame)
+            {
+                expectedFrame--;
+            }
+            currentFrame = expectedFrame + 1;
+            backgroundCheck();
+            secondChild.GetComponent<SpriteRenderer>().sprite = backgrounds[expectedFrame];
+            if (this.loopCount >= -1)
+            {
+                secondChild.position = new Vector3(secondChild.position.x, firstChild.position.y - lastSize.y, secondChild.position.z);
+                backgroundPart.Remove(secondChild);
+                backgroundPart.Add(secondChild);
+            }
+        }
     }
 
     bool isCameraRising() {
