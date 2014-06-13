@@ -5,6 +5,7 @@ public enum NotificationType
 {
     OnBalloonPlayerCollision,
     OnEvent,
+    OnPowerUp,
     OnAchievableEvent,
     BalloonPop,
     TotalNotifications

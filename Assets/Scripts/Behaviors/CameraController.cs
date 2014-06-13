@@ -70,9 +70,9 @@ public class CameraController : MonoBehaviour {
             Vector3 lastPosition = secondChild.transform.position;
             Vector3 lastSize = secondChild.renderer.bounds.max - secondChild.renderer.bounds.min;
 
+
             checkIfFirstSceneIsOutOfBounds(firstChild, lastPosition, lastSize);
             checkIfSecondSceneIsOutOfBounds(secondChild, firstChild, lastPosition, lastSize);
-
         }
 
         lastCameraPos = Cam.transform.position;
@@ -89,6 +89,7 @@ public class CameraController : MonoBehaviour {
             if (expectedFrame == currentFrame) {
                 expectedFrame++;
             }
+
             currentFrame = expectedFrame - 1;
             backgroundCheck();
             firstChild.GetComponent<SpriteRenderer>().sprite = backgrounds[expectedFrame];
@@ -96,19 +97,16 @@ public class CameraController : MonoBehaviour {
     }
 
     void checkIfSecondSceneIsOutOfBounds(Transform secondChild, Transform firstChild, Vector3 lastPosition, Vector3 lastSize) {
-        if (!secondChild.renderer.IsVisibleFrom(Camera.main) && !isCameraRising())
-        {
+        if (!secondChild.renderer.IsVisibleFrom(Camera.main) && !isCameraRising()) {
             this.loopCount--;
             this.expectedFrame--;
-            if (expectedFrame == currentFrame)
-            {
+            if (expectedFrame == currentFrame) {
                 expectedFrame--;
             }
             currentFrame = expectedFrame + 1;
             backgroundCheck();
             secondChild.GetComponent<SpriteRenderer>().sprite = backgrounds[expectedFrame];
-            if (this.loopCount >= -1)
-            {
+            if (this.loopCount >= -1) {
                 secondChild.position = new Vector3(secondChild.position.x, firstChild.position.y - lastSize.y, secondChild.position.z);
                 backgroundPart.Remove(secondChild);
                 backgroundPart.Add(secondChild);
@@ -151,3 +149,52 @@ public class CameraController : MonoBehaviour {
     }
 }
 
+/*
+void checkIfFirstSceneIsOOB(Transform firstChild, Vector3 lastPosition, Vector3 lastSize) {
+
+        if (!firstChild.renderer.IsVisibleFrom(Camera.main) && isCameraRising())
+        {
+            GameObject backgroundscene = new GameObject("background" + loopCount);
+            backgroundscene.transform.position = new Vector3(firstChild.position.x + 25, lastPosition.y + lastSize.y, firstChild.position.z);
+            backgroundscene.transform.localScale = firstChild.transform.localScale;
+            backgroundscene.AddComponent<SpriteRenderer>();
+            backgroundscene.AddComponent<BoxCollider2D>().isTrigger = true;
+            backgroundscene.transform.parent = this.transform.parent;
+            this.loopCount++;
+            this.expectedFrame++;
+            if (expectedFrame == currentFrame)
+            {
+                expectedFrame++;
+            }
+
+            currentFrame = expectedFrame - 1;
+            backgroundCheck();
+            backgroundscene.GetComponent<SpriteRenderer>().sprite = backgrounds[expectedFrame];
+        }
+    }
+
+    void checkIfSecondSceneIsOOB(Transform secondChild, Transform firstChild, Vector3 lastPosition, Vector3 lastSize)
+    {
+        if (!secondChild.renderer.IsVisibleFrom(Camera.main) && !isCameraRising())
+        {
+            GameObject backgroundscene = new GameObject("background" + loopCount);
+            backgroundscene.transform.localScale = firstChild.transform.localScale;
+            backgroundscene.AddComponent<SpriteRenderer>();
+            backgroundscene.AddComponent<BoxCollider2D>().isTrigger = true;
+            backgroundscene.transform.parent = this.transform.parent;
+            this.loopCount--;
+            this.expectedFrame--;
+            if (expectedFrame == currentFrame)
+            {
+                expectedFrame--;
+            }
+            currentFrame = expectedFrame + 1;
+            backgroundCheck();
+            secondChild.GetComponent<SpriteRenderer>().sprite = backgrounds[expectedFrame];
+            if (this.loopCount >= -1)
+            {
+                backgroundscene.transform.position = new Vector3(secondChild.position.x + 25, firstChild.position.y - lastSize.y, firstChild.position.z);
+            }
+        }
+    }
+*/

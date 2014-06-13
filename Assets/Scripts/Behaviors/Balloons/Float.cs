@@ -47,7 +47,6 @@ public class Float : MonoBehaviour {
 
     protected void FixedUpdate() {
         rigidbody2D.velocity = movement;
-
     }
 
     protected void handleMovement() {

@@ -56,7 +56,7 @@ public class BalloonSpawner : MonoBehaviour {
         SpawnBalloons();
         var dist = (player.transform.position - Camera.main.transform.position).z;
         bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
-        transform.position = new Vector3(camera.transform.position.x, bottomBorder, dist);
+        this.transform.position = new Vector3(camera.transform.position.x, bottomBorder, dist);
     }
 
     bool reverse = true;

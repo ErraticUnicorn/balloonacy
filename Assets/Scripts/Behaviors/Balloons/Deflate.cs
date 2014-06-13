@@ -61,6 +61,7 @@ public class Deflate : MonoBehaviour {
                 balloonFloat.setSpeed(new Vector2(0, 25f));
                 NotificationCenter.defaultCenter.postNotification(achievement);
             }
+            NotificationCenter.defaultCenter.removeListener(playerCollision, NotificationType.OnBalloonPlayerCollision);
         }
 
 
